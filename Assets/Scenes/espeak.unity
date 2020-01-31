@@ -257,6 +257,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1440771958}
   - component: {fileID: 1440771957}
+  - component: {fileID: 1440771959}
+  - component: {fileID: 1440771960}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -374,6 +376,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!166 &1440771959
+AudioChorusFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440771956}
+  m_Enabled: 1
+  m_DryMix: 0.5
+  m_WetMix1: 0.5
+  m_WetMix2: 0.5
+  m_WetMix3: 0.5
+  m_Delay: 40
+  m_Rate: 0.8
+  m_Depth: 0.03
+--- !u!170 &1440771960
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440771956}
+  m_Enabled: 1
+  m_DistortionLevel: 0.5
 --- !u!1 &1665498520
 GameObject:
   m_ObjectHideFlags: 0
