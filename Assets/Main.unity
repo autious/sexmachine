@@ -552,6 +552,7 @@ MonoBehaviour:
   inputXOut: 0
   inputYOut: 0
   outputDia: {fileID: 548366204}
+  dialogueTimeInterval: 0.06
 --- !u!4 &1395056813
 Transform:
   m_ObjectHideFlags: 0

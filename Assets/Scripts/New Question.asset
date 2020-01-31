@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
+  m_Name: New Question
+  m_EditorClassIdentifier: 
+  breadText:
+  - So. remember our trip to Italy?
+  inExpectedAnswer: 1
+  wrongAnswer:
+  - You fiend!
+  - Our trip was to Boston idiot!
+  rightAnswer:
+  - Ok, good. That was a test
+  - We didn't go to Italy
+  - We went on a cosmopolitan type date behind Tony Strombolis restarutant
