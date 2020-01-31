@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public static class AndroidStatus
 {
     public static float happniess;
@@ -19,12 +20,22 @@ public class Gameplay : MonoBehaviour
     public float inputYOut;
 
     public Text outputDia;
-    string dgfd;
-        
+
+
+    #region ReadLine Variables
+    public float dialogueTimeInterval;
+
+    string fullLine, readLine;
+
+    float dialogueTimeUp;
+    #endregion
+
     AndroidState androidState;
     // Start is called before the first frame update
     void Start()
     {
+        fullLine = "";
+        readLine = "";
         //Input.
         androidState = new AndroidUpset();
         androidState.Enter();
@@ -36,8 +47,13 @@ public class Gameplay : MonoBehaviour
         androidState.Update();
         inputXOut = InputManager.GetX();
         inputYOut = InputManager.GetY();
-        outputDia.text = AndroidStatus.currentDialogue;
+        outputDia.text = readLine;
 
+        if (AndroidStatus.currentDialogue != fullLine)
+            SetDialogue(AndroidStatus.currentDialogue);
+
+
+        readLine = ReadCurrentDialogue();
         //foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
         //{
         //    Debug.Log("KeyCode down: " + kcode);
@@ -51,9 +67,26 @@ public class Gameplay : MonoBehaviour
         androidState.Enter();
     }
 
+    public string ReadCurrentDialogue()
+    {
+        if(fullLine.Length <= readLine.Length)
+        {
+            return fullLine;
+        }
+        dialogueTimeUp += Time.deltaTime;
+
+
+        if (dialogueTimeUp > dialogueTimeInterval)
+        {
+            dialogueTimeUp = 0;
+            readLine += fullLine[readLine.Length];
+        }
+        return readLine;
+    }
+
     public void SetDialogue(string inDialogue)
     {
-
+        fullLine = inDialogue;
     }
 }
 
@@ -104,8 +137,6 @@ public class AndroidUpset: AndroidState
 }
 
 #endregion
-
-
 
 public static class InputManager
 {
