@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlinkSystem : MonoBehaviour
 {
-
+    [SerializeField] AudioClip clipBlinkClose, clipBlinkOpen;
     [SerializeField] SpriteRenderer eye;
     [SerializeField] Sprite eyeBlink;
     Sprite lastFrame;
@@ -15,7 +15,7 @@ public class BlinkSystem : MonoBehaviour
     Vector3 ogScale;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ogScale = transform.localScale;
         DoBlink();
@@ -40,15 +40,25 @@ public class BlinkSystem : MonoBehaviour
             lastFrame = eye.sprite;
             eye.sprite = eyeBlink;
 
+            FaceSystem.INSTANCE.PlaySound(clipBlinkClose);
+
             transform.localScale = new Vector3(1.2f, 0.8f, 1);
 
         } else {
             blinkTime = Random.Range(1.0f, 3.0f);
             eye.sprite = lastFrame;
+            FaceSystem.INSTANCE.PlaySound(clipBlinkOpen);
 
             transform.localScale = new Vector3(0.8f, 1.2f, 1);
 
         }
+    }
+
+    public void SetEmotion(Sprite _spr) {
+        lastFrame = _spr;
+        if(!isBlinking) { eye.sprite = _spr; }
+        transform.localScale = new Vector3(1.2f, 0.8f, 1);
+
     }
 
 }
