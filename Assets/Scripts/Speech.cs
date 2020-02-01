@@ -20,11 +20,20 @@ namespace UnityLibrary
 
         public delegate void TTSCallback(string message, AudioClip audio);
 
-        enum IncomingMessageType {
+        public enum IncomingMessageType {
             Say,
+            SetRate,
+            SetVolume,
+            SetPitch,
+            SetRange,
+            SetWordGap,
+            SetCapitals,
+            SetIntonation,
+            SetVoice,
         }
-        class IncomingMessage {
+        public class IncomingMessage {
             public IncomingMessageType type;
+            public int param1;
             public string message;
             public TTSCallback callback;
         }
@@ -111,6 +120,31 @@ namespace UnityLibrary
                                 callback_waited_for = msg.callback;
                                 waiting_for_line = true;
                                 break;
+                            case IncomingMessageType.SetPitch:
+                                Client.SetPitch(msg.param1);
+                                break;
+                            case IncomingMessageType.SetRange:
+                                Client.SetRange(msg.param1);
+                                break;
+                            case IncomingMessageType.SetRate:
+                                Client.SetRate(msg.param1);
+                                break;
+                            case IncomingMessageType.SetVolume:
+                                Client.SetVolume(msg.param1);
+                                break;
+                            case IncomingMessageType.SetWordGap:
+                                Client.SetWordgap(msg.param1);
+                                break;
+                            case IncomingMessageType.SetCapitals:
+                                Client.SetCapitals(msg.param1);
+                                break;
+                            case IncomingMessageType.SetIntonation:
+                                Client.SetIntonation(msg.param1);
+                                break;
+                            case IncomingMessageType.SetVoice:
+                                Client.SetVoiceByName(msg.message);
+                                break;
+
                         }
                     }
                     catch (System.Exception e)
@@ -134,6 +168,10 @@ namespace UnityLibrary
             im.type = IncomingMessageType.Say;
             im.message = msg;
             im.callback = callback;
+            QueueMessage(im);
+        }
+
+        public void QueueMessage(IncomingMessage im) {
             message_mutex.WaitOne();
             messages.Enqueue(im);
             message_mutex.ReleaseMutex();
@@ -208,8 +246,15 @@ namespace UnityLibrary
             Client.Stop();
             SetIsClosing(true);
 
+            int wait_counter = 2000;
             // NOTE this will hang unity, until speech has stopped (otherwise crash)
-            while (IsRunning()) { Thread.Sleep(1); };
+            while (IsRunning()) { 
+                Thread.Sleep(1); 
+                if(wait_counter-- < 0) {
+                    Debug.LogError("Sound system dindn't shut down in time.");
+                    break;
+                }
+            };
         }
 
     } // class
