@@ -184,7 +184,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 250
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -549,13 +549,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64538cc4985e9f646a2e352509e813db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputXOut: 0
-  inputYOut: 0
   outputDia: {fileID: 548366204}
   questions:
   - {fileID: 11400000, guid: 7734476af84a1ea47a3e751c304f8f10, type: 2}
   - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
-  dialogueTimeInterval: 0.27
+  dialogueTimeInterval: 0.03
 --- !u!4 &1395056813
 Transform:
   m_ObjectHideFlags: 0

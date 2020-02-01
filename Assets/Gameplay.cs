@@ -10,7 +10,7 @@ public class TalkingElement : ScriptableObject
 {
     public TalkingElement rightAnswerNode;
     public TalkingElement wrongAnswerNode;
-
+    public bool correctlyAnswered;
     public virtual string GetText()
     {
         return "";
@@ -57,7 +57,7 @@ public static class AndroidStatus
     public static TalkingElement GetTalkingElement()
     {
         TalkingElement returnelement = null;
-
+        Debug.Log("Size: "+ talkingPoints.Count);
         if (talkingPoints.Count != 0)
         {
             returnelement = talkingPoints[0];
@@ -74,7 +74,6 @@ public class Gameplay : MonoBehaviour
     public Question[] questions;
 
     TalkingElement currentTalkingElement;
-
     #region ReadLine Variables
     public float dialogueTimeInterval;
 
@@ -83,14 +82,14 @@ public class Gameplay : MonoBehaviour
     float dialogueTimeUp;
     #endregion
 
-    AndroidState androidState;
+    public AndroidState androidState;
     // Start is called before the first frame update
     void Start()
     {
         fullLine = "";
         readLine = "";
         //Input.
-        androidState = new AndroidUpset();
+        androidState = new AndroidUpset(this);
         androidState.Enter();
     }
 
@@ -102,7 +101,37 @@ public class Gameplay : MonoBehaviour
         outputDia.text = readLine;
 
         if (!currentTalkingElement || currentTalkingElement.GoNext())
-            currentTalkingElement = AndroidStatus.GetTalkingElement();
+        {
+            Debug.Log("HEREH: ");
+            if (currentTalkingElement is Question)
+            {
+                Debug.Log("Ah question answer: "+ currentTalkingElement.correctlyAnswered);
+                TalkingElement nextElement = null;
+
+                if(currentTalkingElement.correctlyAnswered)
+                {
+                    nextElement = currentTalkingElement.rightAnswerNode;
+                }
+                else
+                {
+                    nextElement = currentTalkingElement.wrongAnswerNode;
+                }
+
+                if(nextElement != null)
+                {
+                    currentTalkingElement = nextElement;
+                    Debug.Log("Not nUll");
+                }
+                else
+                {
+                    currentTalkingElement = AndroidStatus.GetTalkingElement();
+                    Debug.Log("Next Element");
+                }
+
+            }
+            else
+                currentTalkingElement = AndroidStatus.GetTalkingElement();
+        }
 
         if (currentTalkingElement)
         {
@@ -146,13 +175,12 @@ public class Gameplay : MonoBehaviour
 }
 
 #region Emotionalstates
-
 public class AndroidState
 {
-
-    public AndroidState()
+    protected Gameplay gameRef;
+    public AndroidState(Gameplay inRef)
     {
-
+        gameRef = inRef;
     }
 
     public virtual void Enter()
@@ -171,11 +199,20 @@ public class AndroidState
     }
 }
 
-public class AndroidUpset: AndroidState
+public class AndroidUpset : AndroidState
 {
+    public int questionTraverser;
+    
+    public AndroidUpset(Gameplay inRef):base(inRef)
+    {
+
+    }
+
     public override void Enter()
     {
-        AndroidStatus.AddTalkingElement(new RegularTalkingPoint("So..."));
+        questionTraverser = 0;
+
+    AndroidStatus.AddTalkingElement(new RegularTalkingPoint("So..."));
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint("I think we need to talk"));
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint(" Do you have no shame in your body"));
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint("The way that you've been treating me is not acceptable"));
@@ -192,9 +229,8 @@ public class AndroidUpset: AndroidState
         questionBreadText.Add("Do you understand?");
 
         List<string> wrongText = new List<string>();
-        wrongText.Add("Butthole Idiot");
+        wrongText.Add("God damn you...");
         List<string> righttext = new List<string>();
-        righttext.Add("THAT'S GOOD");
         tempQuestion = new Question(questionBreadText, PlayerAnswer.Yes,wrongText,righttext);
         tempQuestion.wrongAnswerNode = tempQuestion;
 
@@ -203,7 +239,21 @@ public class AndroidUpset: AndroidState
 
     public override void Update()
     {
-       // base.Update();
+      if(AndroidStatus.happniess < 10)
+        {
+            if (AndroidStatus.talkingPoints.Count == 0)
+            {
+                AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
+
+                Debug.Log("Quesitons Length" +gameRef.questions.Length);
+
+                questionTraverser++;
+                Debug.Log("Quesitons Length" + questionTraverser);
+
+                if (gameRef.questions.Length > questionTraverser)
+                    questionTraverser = 0;
+            }
+        }
     }
 
     public override void Exit()
@@ -267,15 +317,12 @@ public class YesAndNo
 
     public PlayerAnswer GetAnswer()
     {
-
-        Debug.Log(shakeCount);
         if (Math.Abs(InputManager.GetX()) <= 0.0f && Math.Abs(InputManager.GetY()) <= 0.0f )
         {
             stayStileTime += Time.deltaTime;
             if (stayStileTime > 1)
             {
                 shakeCount = 0;
-                Debug.Log("WABABABA");
             }
         }
         else
@@ -291,8 +338,12 @@ public class YesAndNo
                 isHorizontal = true;
                 direction = InputManager.GetX();
 
-                if (shakeCount >= 8)
+                if (shakeCount >= 4)
+                {
+                    shakeCount = 0;
+
                     return PlayerAnswer.No;
+                }
             }
             //NO
             else
@@ -302,8 +353,11 @@ public class YesAndNo
                 isHorizontal = false;
                 direction = InputManager.GetY();
 
-                if (shakeCount >= 8)
+                if (shakeCount >= 4)
+                {
+                    shakeCount = 0;
                     return PlayerAnswer.Yes;
+                }
             }
 
             if ((direction + lastDirection) == 0)

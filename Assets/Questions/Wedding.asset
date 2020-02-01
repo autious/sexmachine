@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
   m_Name: Wedding
   m_EditorClassIdentifier: 
+  rightAnswerNode: {fileID: 0}
+  wrongAnswerNode: {fileID: 0}
+  correctlyAnswered: 0
   breadText:
   - Tell me, my wedding gift?
   - Did you really climb that mountain to get that holy sword?
-  inExpectedAnswer: 0
+  expectedAnswer: 1
   wrongAnswer:
   - I knew it...
   rightAnswer:
