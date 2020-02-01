@@ -297,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2541323262981551647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2541323264259095727}
@@ -922,6 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6850a0d766602c4f85e1b7e0e1ecdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audMusic: {fileID: 0}
   eyebrow:
   - {fileID: 880882093008552939}
   - {fileID: 7726851323344812038}
@@ -1093,7 +1094,26 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   faceFollow: {fileID: 1432262602}
-  seriousMood: 
+  seriousMood: "What the fuck did you just fucking say about me, you little bitch?
+    I\u2019ll have you know I graduated top of my class in the Navy Seals, and I\u2019ve
+    been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed
+    kills.\r\n\r\nI am trained in gorilla warfare and I\u2019m the top sniper in the
+    entire US armed forces. You are nothing to me but just another target. I will
+    wipe you the fuck out with precision the likes of which has never been seen before
+    on this Earth, mark my fucking words.\r\n\r\nYou think you can get away with saying
+    that shit to me over the Internet? Think again, fucker. As we speak I am contacting
+    my secret network of spies across the USA and your IP is being traced right now
+    so you better prepare for the storm, maggot. The storm that wipes out the pathetic
+    little thing you call your life. You\u2019re fucking dead, kid. I can be anywhere,
+    anytime, and I can kill you in over seven hundred ways, and that\u2019s just with
+    my bare hands.\r\n\r\nNot only am I extensively trained in unarmed combat, but
+    I have access to the entire arsenal of the United States Marine Corps and I will
+    use it to its full extent to wipe your miserable ass off the face of the continent,
+    you little shit. If only you could have known what unholy retribution your little
+    \u201Cclever\u201D comment was about to bring down upon you, maybe you would have
+    held your fucking tongue.\r\n\r\nBut you couldn\u2019t, you didn\u2019t, and now
+    you\u2019re paying the price, you goddamn idiot. I will shit fury all over you
+    and you will drown in it.\r\n\r\nYou\u2019re fucking dead, kiddo."
 --- !u!82 &2541323263577265770
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1740,6 +1760,7 @@ MonoBehaviour:
   mouth: {fileID: 2541323264513526104}
   mouthOpen: {fileID: 8360110206030660645, guid: d2254f8455549dc4788762644302607f,
     type: 3}
+  scaleAmplitude: 1
   mainTransform: {fileID: 2541323262981551641}
 --- !u!1 &2541323264733788212
 GameObject:

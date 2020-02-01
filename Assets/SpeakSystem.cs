@@ -10,6 +10,7 @@ public class SpeakSystem : MonoBehaviour
     [SerializeField] Sprite mouthOpen;
     Sprite lastFrame;
 
+    public float scaleAmplitude = 1;
 
     [SerializeField] Transform mainTransform;
 
@@ -27,12 +28,7 @@ public class SpeakSystem : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        transform.localScale = Vector3.Lerp(transform.localScale, ogScale, 9 * Time.deltaTime);
-
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            //Speak
-            DoSpeak();
-        }
+        transform.localScale = Vector3.Lerp(transform.localScale, ogScale * scaleAmplitude, 9 * Time.deltaTime);
 
         if(isSpeaking) {
             if(speakTime > 0) {
