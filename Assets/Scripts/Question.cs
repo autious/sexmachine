@@ -13,10 +13,13 @@ public enum PlayerAnswer
 [CreateAssetMenu(menuName = "Dialogue")]
 public class Question : TalkingElement
 {
-
     bool allDone;
     int questionState = 0;
     int currentElement = 0;
+    [Range(0.0f,1.0f)]
+    public float correct_happiness_boost;
+    [Range(-1.0f,0.0f)]
+    public float incorrect_happiness_loss;
     public List<StringEmotion> breadText;
     public PlayerAnswer expectedAnswer;
     public List<StringEmotion> wrongAnswer;
@@ -26,6 +29,11 @@ public class Question : TalkingElement
     public class StringEmotion {
         [TextArea] public string breadText;
         public FaceSystem.Emotion emotionState;
+    }
+
+    public Question() {
+        correct_happiness_boost = 0.1f;
+        incorrect_happiness_loss = -0.1f;
     }
 
     public Question(List<StringEmotion> inBreadText, PlayerAnswer inExpectedAnswer, List<StringEmotion> inWrongAnswer, List<StringEmotion> inRightAnswer)
