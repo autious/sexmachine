@@ -8,8 +8,8 @@ public class WobbleHandler : MonoBehaviour
     Vector3 ogRot;
 
     [Header("Position")]
-    [SerializeField] Vector3 posDistance;
-    [SerializeField] float speed = 0.2f;
+    public Vector3 posDistance;
+    public float speed = 0.2f;
 
     [SerializeField] bool followOgPos = false;
     [SerializeField] Transform followTarget;

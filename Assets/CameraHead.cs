@@ -6,8 +6,10 @@ public class CameraHead : MonoBehaviour
 {
 
     Vector3 ogRot;
-    [SerializeField] float amount;
+    public float amount;
     Vector3 rot;
+
+    public static float ScreenShake = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,8 +20,8 @@ public class CameraHead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rot = Spring(rot, new Vector3(-Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"), 0) * amount);
-        transform.rotation = Quaternion.Euler(rot);
+        rot = Spring(rot, new Vector3(-InputManager.GetY(), InputManager.GetX(), 0) * amount);
+        transform.rotation = Quaternion.Euler(rot + (Random.insideUnitSphere * ScreenShake));
     }
 
     Vector3 calc = Vector3.zero;
