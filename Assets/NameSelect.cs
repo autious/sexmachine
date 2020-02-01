@@ -9,7 +9,7 @@ public class NameSelect : MonoBehaviour
 
     [SerializeField] AudioSource aud;
 
-    [SerializeField] AudioClip clipEnter, clipDelete;
+    [SerializeField] AudioClip clipEnter, clipDelete, clipSelect;
 
     [SerializeField] Transform myParent;
     [SerializeField] GameObject letterOBJ;
@@ -43,7 +43,10 @@ public class NameSelect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.GetComponent<TextMesh>() != null) {
-            currentLetterTransform = other.transform;
+            if(currentLetterTransform != other.transform) {
+                currentLetterTransform = other.transform;
+                PlaySound(clipSelect);
+            }
         }
     }
 
