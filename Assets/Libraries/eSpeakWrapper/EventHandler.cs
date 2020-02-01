@@ -36,17 +36,18 @@ namespace ESpeakWrapper
 
                 //PlayAudio();
                 //Console.Write(ConvertHeadersToString(Stream.GetBuffer()));
-
-                Stream.Flush();
-                audio_files_mutex.WaitOne();
-                audio_files.Add(Stream.ToArray());
-                audio_files_mutex.ReleaseMutex();
-                Stream.Dispose();
-                Stream = null;
+                if(Stream != null) {
+                    Stream.Flush();
+                    audio_files_mutex.WaitOne();
+                    audio_files.Add(Stream.ToArray());
+                    audio_files_mutex.ReleaseMutex();
+                    Stream.Dispose();
+                    Stream = null;
+                }
                 return 0;
+            } else {
+                WriteAudioToStream(wavePtr, bufferLength);
             }
-
-            WriteAudioToStream(wavePtr, bufferLength);
 
             var events = MarshalEvents(eventsPtr);
 
