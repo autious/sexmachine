@@ -41,6 +41,12 @@ TextureImporter:
   - first:
       213: -5566863575565422718
     second: mouth2
+  - first:
+      213: -4707055867387163312
+    second: mouth4
+  - first:
+      213: 2309102254610777421
+    second: mouth5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -402,6 +408,48 @@ TextureImporter:
       bones: []
       spriteID: d359d5c1504fbac4d876f839496c4ff3
       internalID: -5566863575565422718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouth4
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 115
+        width: 150
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f833476edaa2f43a3f197797675198
+      internalID: -4707055867387163312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouth5
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 208
+        width: 145
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5173733, y: 0.54777604}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52d8948e57ac414682bd7fe4133be31
+      internalID: 2309102254610777421
       vertices: []
       indices: 
       edges: []
