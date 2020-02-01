@@ -39,7 +39,6 @@ public class Question : TalkingElement
         currentElement = 0;
     }
 
-
     public override StringEmotion GetText()
     {
         StringEmotion toRead = null;
@@ -95,6 +94,7 @@ public class Question : TalkingElement
                 PlayerAnswer answer = InputManager.yesAndNo.GetAnswer();
                 if (answer != PlayerAnswer.Nothing)
                 {
+                    Debug.Log("LOL");
                     if (expectedAnswer != answer)
                     {
                         questionState = 2;
