@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: New Question
+  m_Name: Wedding
   m_EditorClassIdentifier: 
   breadText:
-  - So. remember our trip to Italy?
-  inExpectedAnswer: 1
+  - Tell me, my wedding gift?
+  - Did you really climb that mountain to get that holy sword?
+  inExpectedAnswer: 0
   wrongAnswer:
-  - You fiend!
-  - Our trip was to Boston idiot!
+  - I knew it...
   rightAnswer:
-  - Ok, good. That was a test
-  - We didn't go to Italy
-  - We went on a cosmopolitan type date behind Tony Strombolis restarutant
+  - Mmm mm mmm mmm
