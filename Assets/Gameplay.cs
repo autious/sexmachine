@@ -250,7 +250,7 @@ public class AndroidUpset : AndroidState
                 questionTraverser++;
                 Debug.Log("Quesitons Length" + questionTraverser);
 
-                if (gameRef.questions.Length > questionTraverser)
+                if (gameRef.questions.Length <= questionTraverser)
                     questionTraverser = 0;
             }
         }
