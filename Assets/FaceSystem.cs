@@ -30,6 +30,8 @@ public class FaceSystem : MonoBehaviour {
     [SerializeField] UnityEvent eventSad;
     [SerializeField] UnityEvent eventBlush;
 
+    [SerializeField] WobbleHandler faceFollow;
+
     public void SetEmotion(Emotion emotion) {
         switch(emotion) {
                 case Emotion.idle:
@@ -39,6 +41,10 @@ public class FaceSystem : MonoBehaviour {
             SetTears(false);
             SetMad(false);
 
+            faceFollow.posDistance = Vector3.one * 0.4f;
+            faceFollow.speed = 1;
+            CameraHead.ScreenShake = 0;
+
             break;
                 case Emotion.happy:
             SetBrow(0);
@@ -46,6 +52,10 @@ public class FaceSystem : MonoBehaviour {
             SetBlush(false);
             SetTears(false);
             SetMad(false);
+
+            faceFollow.posDistance = Vector3.one * 0.8f;
+            faceFollow.speed = 0.5f;
+            CameraHead.ScreenShake = 0;
 
             break;
                 case Emotion.angry:
@@ -55,6 +65,10 @@ public class FaceSystem : MonoBehaviour {
             SetTears(false);
             SetMad(true);
 
+            faceFollow.posDistance = Vector3.one * 2;
+            faceFollow.speed = 2;
+            CameraHead.ScreenShake = 0.4f;
+
             break;
                 case Emotion.sad:
             SetBrow(3);
@@ -63,6 +77,10 @@ public class FaceSystem : MonoBehaviour {
             SetTears(true);
             SetMad(false);
 
+            faceFollow.posDistance = Vector3.one * 1;
+            faceFollow.speed = 0.5f;
+            CameraHead.ScreenShake = 0;
+
             break;
                 case Emotion.blush:
             SetBrow(2);
@@ -70,6 +88,10 @@ public class FaceSystem : MonoBehaviour {
             SetBlush(true);
             SetTears(false);
             SetMad(false);
+
+            faceFollow.posDistance = Vector3.one * 2f;
+            faceFollow.speed = 0.3f;
+            CameraHead.ScreenShake = 0;
 
             break;
             default:
