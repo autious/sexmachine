@@ -73,7 +73,7 @@ public class Gameplay : MonoBehaviour
 
     public Question[] questions;
 
-    TalkingElement currentTalkingElement;
+    public TalkingElement currentTalkingElement;
     #region ReadLine Variables
     public float dialogueTimeInterval;
 
@@ -96,16 +96,15 @@ public class Gameplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        androidState.Update();
 
         outputDia.text = readLine;
 
         if (!currentTalkingElement || currentTalkingElement.GoNext())
         {
-            Debug.Log("HEREH: ");
+            //Debug.Log("HEREH: ");
             if (currentTalkingElement is Question)
             {
-                Debug.Log("Ah question answer: "+ currentTalkingElement.correctlyAnswered);
+
                 TalkingElement nextElement = null;
 
                 if(currentTalkingElement.correctlyAnswered)
@@ -132,7 +131,7 @@ public class Gameplay : MonoBehaviour
             else
                 currentTalkingElement = AndroidStatus.GetTalkingElement();
         }
-
+        androidState.Update();
         if (currentTalkingElement)
         {
             if (currentTalkingElement.GetText() != fullLine)
@@ -241,14 +240,10 @@ public class AndroidUpset : AndroidState
     {
       if(AndroidStatus.happniess < 10)
         {
-            if (AndroidStatus.talkingPoints.Count == 0)
+            if (gameRef.currentTalkingElement == null)
             {
                 AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
-
-                Debug.Log("Quesitons Length" +gameRef.questions.Length);
-
                 questionTraverser++;
-                Debug.Log("Quesitons Length" + questionTraverser);
 
                 if (gameRef.questions.Length <= questionTraverser)
                     questionTraverser = 0;
@@ -306,7 +301,7 @@ public class YesAndNo
     int shakeCount;
     bool isHorizontal;
     float direction,lastDirection;
-
+    float wait;
     float stayStileTime;
     public YesAndNo()
     {
@@ -317,6 +312,12 @@ public class YesAndNo
 
     public PlayerAnswer GetAnswer()
     {
+        if (wait > 0)
+        {
+            wait -= Time.deltaTime;
+            return PlayerAnswer.Nothing;
+        }
+
         if (Math.Abs(InputManager.GetX()) <= 0.0f && Math.Abs(InputManager.GetY()) <= 0.0f )
         {
             stayStileTime += Time.deltaTime;
@@ -341,6 +342,7 @@ public class YesAndNo
                 if (shakeCount >= 4)
                 {
                     shakeCount = 0;
+                    wait = 1;
 
                     return PlayerAnswer.No;
                 }
@@ -355,6 +357,7 @@ public class YesAndNo
 
                 if (shakeCount >= 4)
                 {
+                    wait = 1;
                     shakeCount = 0;
                     return PlayerAnswer.Yes;
                 }
