@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NameSelect : MonoBehaviour
 {
+    [SerializeField] UnityEvent activateFace;
+
     [SerializeField] AudioSource aud;
 
     [SerializeField] AudioClip clipEnter, clipDelete;
@@ -26,11 +29,16 @@ public class NameSelect : MonoBehaviour
     float defaultHeadAmount;
     private void Awake() {
         defaultHeadAmount = cameraHead.amount;
-        cameraHead.amount = 0.1f;
+        cameraHead.amount = 0.4f;
     }
 
+
     void StartGame() {
+        CommunicationsManager.INSTANCE.Say(myName);
+
         cameraHead.amount = defaultHeadAmount;
+        activateFace.Invoke();
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -40,6 +48,8 @@ public class NameSelect : MonoBehaviour
     }
 
     private void Update() {
+        if(gameSetup) { return; }
+
         transform.position += new Vector3(InputManager.GetX(), InputManager.GetY(), 0).normalized * speed * Time.deltaTime;
 
         currentName.text = myName;
@@ -49,7 +59,7 @@ public class NameSelect : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Space)) {
                 string currentLetter = currentLetterTransform.GetComponent<TextMesh>().text;
-                if(currentLetter == "DONE") { gameSetup = true; return; }
+                if(currentLetter == "DONE") { StartGame();  gameSetup = true; return; }
                 
                 if(currentLetter == "DEL") {
                     if(myName.Length > 0) {
@@ -63,6 +73,10 @@ public class NameSelect : MonoBehaviour
                 if(myName.Length < nameLength) {
                     myName += currentLetter;
                     PlaySound(clipEnter);
+
+                    //FaceSystem.Emotion[] moods = (FaceSystem.Emotion[])System.Enum.GetValues(typeof(FaceSystem.Emotion));
+                    //CommunicationsManager.INSTANCE.SetMood(moods[UnityEngine.Random.Range(0,moods.Length)]);
+                    CommunicationsManager.INSTANCE.Say(currentLetter);
                 }
             }
         }

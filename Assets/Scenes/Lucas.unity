@@ -332,6 +332,18 @@ Transform:
   m_Father: {fileID: 912365309}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &134109872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1237047649, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8957214479873404412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &140461077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7741514786665766466, guid: e1d10c44a582f9941a106060ec2db85c,
@@ -525,10 +537,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2da8939d070f644583f77b15687b345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activateFace:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 912365308}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 723624597}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   aud: {fileID: 165212451}
   clipEnter: {fileID: 8300000, guid: bc68ec6c8fa434b429c489d05a11aaa2, type: 3}
   clipDelete: {fileID: 8300000, guid: e1f90480394df5242af6f2fb7538b983, type: 3}
-  myParent: {fileID: 0}
+  myParent: {fileID: 912365309}
   letterOBJ: {fileID: 1458670692}
   currentName: {fileID: 301161543}
   myName: 
@@ -2800,6 +2839,85 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1d10c44a582f9941a106060ec2db85c, type: 3}
+--- !u!1001 &1802688711
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 670087335135934012, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_Name
+      value: '#SpeechManager'
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162181447335875859, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: said_line
+      value: 
+      objectReference: {fileID: 8957214479873404414}
+    - target: {fileID: 7162181447335875859, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: mood_text
+      value: 
+      objectReference: {fileID: 134109872}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b8099e9dbe21794784b763c93191b98, type: 3}
 --- !u!1001 &1823084471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3047,7 +3165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046524106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 39.8}
+  m_LocalPosition: {x: 0, y: 0, z: 33.9}
   m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 723624598}
@@ -3162,6 +3280,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2541323263577265771, guid: 6569428af96bd8941a62f5f3fc4953f1,
+        type: 3}
+      propertyPath: seriousMood
+      value: "What the fuck did you just fucking say about me, you little bitch? I\u2019ll
+        have you know I graduated top of my class in the Navy Seals, and I\u2019ve
+        been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed
+        kills.\r\n\r\nI am trained in gorilla warfare and I\u2019m the top sniper
+        in the entire US armed forces. You are nothing to me but just another target.
+        I will wipe you the fuck out with precision the likes of which has never been
+        seen before on this Earth, mark my fucking words.\r\n\r\nYou think you can
+        get away with saying that shit to me over the Internet? Think again, fucker.
+        As we speak I am contacting my secret network of spies across the USA and
+        your IP is being traced right now so you better prepare for the storm, maggot.
+        The storm that wipes out the pathetic little thing you call your life. You\u2019re
+        fucking dead, kid. I can be anywhere, anytime, and I can kill you in over
+        seven hundred ways, and that\u2019s just with my bare hands.\r\n\r\nNot only
+        am I extensively trained in unarmed combat, but I have access to the entire
+        arsenal of the United States Marine Corps and I will use it to its full extent
+        to wipe your miserable ass off the face of the continent, you little shit.
+        If only you could have known what unholy retribution your little \u201Cclever\u201D
+        comment was about to bring down upon you, maybe you would have held your fucking
+        tongue.\r\n\r\nBut you couldn\u2019t, you didn\u2019t, and now you\u2019re
+        paying the price, you goddamn idiot. I will shit fury all over you and you
+        will drown in it.\r\n\r\nYou\u2019re fucking dead, kiddo."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6569428af96bd8941a62f5f3fc4953f1, type: 3}
@@ -3361,5 +3504,64 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 507732880}
+    - target: {fileID: 8957214481060176300, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_Name
+      value: SpokenLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_Text
+      value: What is your name?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047645, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_Name
+      value: Mood
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237047645, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+--- !u!114 &8957214479873404414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8957214479873404412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
