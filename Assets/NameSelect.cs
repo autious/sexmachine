@@ -57,7 +57,7 @@ public class NameSelect : MonoBehaviour
         if(currentLetterTransform != null) {
             transform.position = Vector3.Lerp(transform.position, currentLetterTransform.position, 8 * Time.deltaTime);
 
-            if(Input.GetKeyDown(KeyCode.Space)) {
+            if(InputManager.PushToTalk()) {
                 string currentLetter = currentLetterTransform.GetComponent<TextMesh>().text;
                 if(currentLetter == "DONE") { StartGame();  gameSetup = true; return; }
                 

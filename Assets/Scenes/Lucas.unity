@@ -1623,6 +1623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 723624598}
+  - component: {fileID: 723624599}
   m_Layer: 0
   m_Name: _Game
   m_TagString: Untagged
@@ -1646,6 +1647,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723624599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723624597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64538cc4985e9f646a2e352509e813db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputDia: {fileID: 8957214479873404414}
+  questions:
+  - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
+  - {fileID: 11400000, guid: 7734476af84a1ea47a3e751c304f8f10, type: 2}
+  dialogueTimeInterval: 0
 --- !u!4 &734187892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7741514786665766466, guid: e1d10c44a582f9941a106060ec2db85c,
@@ -3013,6 +3031,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2541323264272625037}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1924695514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8957214481011320452, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8957214479873404412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1924695516 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 116869316, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8957214479873404412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!170 &1924695520
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924695514}
+  m_Enabled: 1
+  m_DistortionLevel: 0.5
 --- !u!1001 &1939853495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3315,6 +3354,11 @@ PrefabInstance:
         paying the price, you goddamn idiot. I will shit fury all over you and you
         will drown in it.\r\n\r\nYou\u2019re fucking dead, kiddo."
       objectReference: {fileID: 0}
+    - target: {fileID: 2541323263577265771, guid: 6569428af96bd8941a62f5f3fc4953f1,
+        type: 3}
+      propertyPath: audMusic
+      value: 
+      objectReference: {fileID: 1924695516}
     - target: {fileID: 2541323262981551641, guid: 6569428af96bd8941a62f5f3fc4953f1,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -3518,6 +3562,60 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 507732880}
+    - target: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 116869316, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176301, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176301, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 227.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176301, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176301, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176301, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176301, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957214481060176301, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
 --- !u!114 &8957214479873404414 stripped

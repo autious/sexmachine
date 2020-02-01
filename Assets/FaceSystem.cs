@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public class FaceSystem : MonoBehaviour {
 
-    
+    [SerializeField] AudioSource audMusic;
+    enum MusicState {normal, angry, sad, wobbly, happy }
+    MusicState currentMusicState = MusicState.normal;
+    float musicPitch = 1;
 
     AudioSource aud;
 
@@ -51,6 +54,7 @@ public class FaceSystem : MonoBehaviour {
             faceFollow.posDistance = Vector3.one * 0.4f;
             faceFollow.speed = 1;
             CameraHead.ScreenShake = 0;
+            SetMusicState(MusicState.normal);
 
             break;
                 case Emotion.happy:
@@ -63,6 +67,7 @@ public class FaceSystem : MonoBehaviour {
             faceFollow.posDistance = Vector3.one * 0.8f;
             faceFollow.speed = 0.5f;
             CameraHead.ScreenShake = 0;
+            SetMusicState(MusicState.happy);
 
             break;
                 case Emotion.angry:
@@ -75,6 +80,7 @@ public class FaceSystem : MonoBehaviour {
             faceFollow.posDistance = Vector3.one * 2;
             faceFollow.speed = 2;
             CameraHead.ScreenShake = 0.4f;
+            SetMusicState(MusicState.angry);
 
             break;
                 case Emotion.sad:
@@ -87,6 +93,7 @@ public class FaceSystem : MonoBehaviour {
             faceFollow.posDistance = Vector3.one * 1;
             faceFollow.speed = 0.5f;
             CameraHead.ScreenShake = 0;
+            SetMusicState(MusicState.sad);
 
             break;
                 case Emotion.blush:
@@ -99,6 +106,8 @@ public class FaceSystem : MonoBehaviour {
             faceFollow.posDistance = Vector3.one * 1f;
             faceFollow.speed = 0.5f;
             CameraHead.ScreenShake = 0;
+            SetMusicState(MusicState.wobbly);
+
 
             break;
             default:
@@ -107,11 +116,39 @@ public class FaceSystem : MonoBehaviour {
     }
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.Alpha1)) { SetEmotion(Emotion.idle);    CommunicationsManager.INSTANCE.Say("this is my natural speaking voice."); }
-        if(Input.GetKeyDown(KeyCode.Alpha2)) { SetEmotion(Emotion.happy);   CommunicationsManager.INSTANCE.Say("this is my happy speaking voice."); }
-        if(Input.GetKeyDown(KeyCode.Alpha3)) { SetEmotion(Emotion.angry);   CommunicationsManager.INSTANCE.Say("this is my angry speaking voice."); }
-        if(Input.GetKeyDown(KeyCode.Alpha4)) { SetEmotion(Emotion.sad);     CommunicationsManager.INSTANCE.Say("this is my sad speaking voice."); }
-        if(Input.GetKeyDown(KeyCode.Alpha5)) { SetEmotion(Emotion.blush);   CommunicationsManager.INSTANCE.Say("dis isu voiceu, backa!"); }
+
+        //MUSIC STATES
+        switch(currentMusicState) {
+            case MusicState.normal:
+            musicPitch = 1;
+            break;
+            case MusicState.sad:
+            musicPitch = 0.8f;
+
+            break;
+            case MusicState.wobbly:
+            musicPitch = 2 + (Mathf.Sin(Time.time*40)*0.3f);
+
+            break;
+            case MusicState.happy:
+            musicPitch = 1.6f;
+
+            break;
+            case MusicState.angry:
+            musicPitch = 0.5f + (Mathf.Sin(Time.time * 30) * 0.3f);
+
+            break;
+            default:
+            break;
+        }
+
+        audMusic.pitch = Mathf.Lerp(audMusic.pitch, musicPitch, 6 * Time.deltaTime);
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)) { SetEmotion(Emotion.idle);  }
+        if(Input.GetKeyDown(KeyCode.Alpha2)) { SetEmotion(Emotion.happy);  }
+        if(Input.GetKeyDown(KeyCode.Alpha3)) { SetEmotion(Emotion.angry); }
+        if(Input.GetKeyDown(KeyCode.Alpha4)) { SetEmotion(Emotion.sad);    }
+        if(Input.GetKeyDown(KeyCode.Alpha5)) { SetEmotion(Emotion.blush);   }
 
     }
 
@@ -125,6 +162,10 @@ public class FaceSystem : MonoBehaviour {
         for(int i = 0; i < blush.Length; i++) {
             blush[i].SetActive(_state);
         }
+    }
+
+    void SetMusicState(MusicState _state) {
+        currentMusicState = _state;
     }
 
     void SetMad(bool _state) { mad.SetActive(_state); }
