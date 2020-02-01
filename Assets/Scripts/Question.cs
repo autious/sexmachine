@@ -10,10 +10,17 @@ public enum PlayerAnswer
 }
 
 [CreateAssetMenu(menuName = "Dialogue")]
-public class Question : ScriptableObject
+public class Question : TalkingElement
 {
+    int currentLement;
     public List<string> breadText;
     public PlayerAnswer inExpectedAnswer;
     public List<string> wrongAnswer;
     public List<string> rightAnswer;
+
+
+    public override string GetText()
+    {
+        return "";// breadText.;
+    }
 }
