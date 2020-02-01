@@ -10,6 +10,7 @@ public class TalkingElement : ScriptableObject
 {
     public TalkingElement rightAnswerNode;
     public TalkingElement wrongAnswerNode;
+    [NonSerialized]
     public bool correctlyAnswered;
     public virtual Question.StringEmotion GetText()
     {
