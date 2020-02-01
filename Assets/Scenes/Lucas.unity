@@ -2916,6 +2916,15 @@ PrefabInstance:
       propertyPath: mood_text
       value: 
       objectReference: {fileID: 134109872}
+    - target: {fileID: 1134473714696386012, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 370572846, guid: 4b8099e9dbe21794784b763c93191b98, type: 3}
+      propertyPath: m_DistortionLevel
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b8099e9dbe21794784b763c93191b98, type: 3}
 --- !u!1001 &1823084471
@@ -3504,53 +3513,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 507732880}
-    - target: {fileID: 8957214481060176300, guid: 34765dfb813c8b64998511ba4f5e3ad3,
-        type: 3}
-      propertyPath: m_Name
-      value: SpokenLine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
-        type: 3}
-      propertyPath: m_Text
-      value: What is your name?
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957214481060176303, guid: 34765dfb813c8b64998511ba4f5e3ad3,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -30.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047646, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 51
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047645, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_Name
-      value: Mood
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237047645, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34765dfb813c8b64998511ba4f5e3ad3, type: 3}
 --- !u!114 &8957214479873404414 stripped
