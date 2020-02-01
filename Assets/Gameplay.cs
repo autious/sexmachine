@@ -134,8 +134,9 @@ public class Gameplay : MonoBehaviour
         androidState.Update();
         if (currentTalkingElement)
         {
-            if (currentTalkingElement.GetText().breadText != fullLine)
-                SetDialogue(currentTalkingElement.GetText());
+            var next = currentTalkingElement.GetText();
+            if (next != null && next.breadText != fullLine)
+                SetDialogue(next);
 
         }
 
