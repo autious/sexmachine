@@ -5,13 +5,10 @@ using UnityEngine;
 using UnityLibrary;
 
 public class CommunicationsManager : MonoBehaviour {
-    public enum Mood {
-        Happy,
-        Sad,
-        Aroused,
-        Curious,
-        Angry,
-        Disgusted,
+
+    public static CommunicationsManager INSTANCE;
+    private void Awake() {
+        INSTANCE = this;
     }
 
     public Text said_line;
@@ -19,64 +16,60 @@ public class CommunicationsManager : MonoBehaviour {
 
     public AudioSource happy_source;
     public AudioSource sad_source;
-    public AudioSource aroused_source;
-    public AudioSource curious_source;
-    public AudioSource disgusted_source;
+    public AudioSource blush_source;
+    public AudioSource idle_source;
     public AudioSource angry_source;
 
-
-    Mood current_mood = Mood.Happy;
+    FaceSystem.Emotion current_mood = FaceSystem.Emotion.idle;
 
     void Start() {
     }
 
     // Update is called once per frame
     void Update() {
-        if(Input.GetKeyDown(KeyCode.W)) { 
-            Say("Why don't you love me anymore?");
-        }
-        if(Input.GetKeyDown(KeyCode.S)) {
-            Say("That's the sweetest thing i've ever heard");
-        }
+        //if(Input.GetKeyDown(KeyCode.W)) { 
+        //    Say("Why don't you love me anymore?");
+        //}
+        //if(Input.GetKeyDown(KeyCode.S)) {
+        //    Say("That's the sweetest thing i've ever heard");
+        //}
 
-        if(Input.GetKeyDown(KeyCode.A)) {
-            Say("Oh, baby, just like that");
-        }
+        //if(Input.GetKeyDown(KeyCode.A)) {
+        //    Say("Oh, baby, just like that");
+        //}
 
-        if(Input.GetKeyDown(KeyCode.D)) {
-            Say("Remember the time we used to have, in italy?");
-        }
+        //if(Input.GetKeyDown(KeyCode.D)) {
+        //    Say("Remember the time we used to have, in italy?");
+        //}
 
-        if(Input.GetKeyDown(KeyCode.P)) {
-            Mood[] moods = (Mood[]) System.Enum.GetValues(typeof(Mood));
-            SetMood(moods[UnityEngine.Random.Range(0,moods.Length)]);
-        }
+        //if(Input.GetKeyDown(KeyCode.P)) {
+        //    FaceSystem.Emotion[] moods = (FaceSystem.Emotion[]) System.Enum.GetValues(typeof(FaceSystem.Emotion));
+        //    SetMood(moods[UnityEngine.Random.Range(0,moods.Length)]);
+        //}
     }
 
-    void SetMood(Mood mood) {
+    public void SetMood(FaceSystem.Emotion mood) {
         current_mood = mood;
         mood_text.text = current_mood.ToString();
     }
 
-    public AudioSource GetMoodSource(Mood mood) {
+    public AudioSource GetMoodSource(FaceSystem.Emotion mood) {
         switch(mood) {
-            case Mood.Angry:
+            case FaceSystem.Emotion.angry:
                 return angry_source;
-            case Mood.Aroused:
-                return aroused_source;
-            case Mood.Curious:
-                return curious_source;
-            case Mood.Disgusted:
-                return disgusted_source;
-            case Mood.Happy:
+            case FaceSystem.Emotion.blush:
+                return blush_source;
+            case FaceSystem.Emotion.idle:
+                return idle_source;
+            case FaceSystem.Emotion.happy:
                 return happy_source;
-            case Mood.Sad:
+            case FaceSystem.Emotion.sad:
                 return sad_source;
         }
         return angry_source;
     }
 
-    void Say(string text) {
+    public void Say(string text) {
         VoiceMood vm = GetMoodSource(current_mood).GetComponent<VoiceMood>();
         if(vm != null) {
             Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetVoice, message = vm.voice });
@@ -91,7 +84,14 @@ public class CommunicationsManager : MonoBehaviour {
     }
 
     void VoiceGeneratedCallback(string line, AudioClip data) {
-        said_line.text = line;
+        //said_line.text = line;
+
+        happy_source.Stop();
+        sad_source.Stop();
+        blush_source.Stop();
+        idle_source.Stop();
+        angry_source.Stop();
+
         AudioSource source = GetMoodSource(current_mood);
         source.clip = data;
         source.Play();

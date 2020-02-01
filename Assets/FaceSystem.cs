@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class FaceSystem : MonoBehaviour {
 
+    
+
     AudioSource aud;
 
     public static FaceSystem INSTANCE;
@@ -32,7 +34,12 @@ public class FaceSystem : MonoBehaviour {
 
     [SerializeField] WobbleHandler faceFollow;
 
+
+    [SerializeField, TextArea] string seriousMood;
+
     public void SetEmotion(Emotion emotion) {
+
+        CommunicationsManager.INSTANCE.SetMood(emotion);
         switch(emotion) {
                 case Emotion.idle:
             SetBrow(0);
@@ -89,8 +96,8 @@ public class FaceSystem : MonoBehaviour {
             SetTears(false);
             SetMad(false);
 
-            faceFollow.posDistance = Vector3.one * 2f;
-            faceFollow.speed = 0.3f;
+            faceFollow.posDistance = Vector3.one * 1f;
+            faceFollow.speed = 0.5f;
             CameraHead.ScreenShake = 0;
 
             break;
@@ -100,11 +107,12 @@ public class FaceSystem : MonoBehaviour {
     }
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.Alpha1)) { SetEmotion(Emotion.idle); }
-        if(Input.GetKeyDown(KeyCode.Alpha2)) { SetEmotion(Emotion.happy); }
-        if(Input.GetKeyDown(KeyCode.Alpha3)) { SetEmotion(Emotion.angry); }
-        if(Input.GetKeyDown(KeyCode.Alpha4)) { SetEmotion(Emotion.sad); }
-        if(Input.GetKeyDown(KeyCode.Alpha5)) { SetEmotion(Emotion.blush); }
+        if(Input.GetKeyDown(KeyCode.Alpha1)) { SetEmotion(Emotion.idle);    CommunicationsManager.INSTANCE.Say("this is my natural speaking voice."); }
+        if(Input.GetKeyDown(KeyCode.Alpha2)) { SetEmotion(Emotion.happy);   CommunicationsManager.INSTANCE.Say("this is my happy speaking voice."); }
+        if(Input.GetKeyDown(KeyCode.Alpha3)) { SetEmotion(Emotion.angry);   CommunicationsManager.INSTANCE.Say("this is my angry speaking voice."); }
+        if(Input.GetKeyDown(KeyCode.Alpha4)) { SetEmotion(Emotion.sad);     CommunicationsManager.INSTANCE.Say("this is my sad speaking voice."); }
+        if(Input.GetKeyDown(KeyCode.Alpha5)) { SetEmotion(Emotion.blush);   CommunicationsManager.INSTANCE.Say("dis isu voiceu, backa!"); }
+
     }
 
     public void SetEye(Sprite _spr) {
