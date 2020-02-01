@@ -49,8 +49,10 @@ public class CommunicationsManager : MonoBehaviour {
                 sum /= amplitude_sample_buffer.Length;
 
                 if(sum > prev_amplitude * 1.4f) {
-                    if(ss.IsSpeaking == false) {
-                        ss.DoSpeak();
+                    if(ss != null) {
+                        if(ss.IsSpeaking == false) {
+                            ss.DoSpeak();
+                        }
                     }
                 }
                 prev_amplitude = sum; 
