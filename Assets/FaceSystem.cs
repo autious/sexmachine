@@ -135,7 +135,7 @@ public class FaceSystem : MonoBehaviour {
 
             break;
             case MusicState.angry:
-            musicPitch = 0.5f + (Mathf.Sin(Time.time * 30) * 0.3f);
+            musicPitch = 0.7f + (Mathf.Sin(Time.time * 30) * 0.3f);
 
             break;
             default:
