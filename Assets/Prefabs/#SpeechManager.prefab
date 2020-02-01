@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 133627215}
+  - component: {fileID: 3990687596292022069}
   - component: {fileID: 133627214}
   m_Layer: 0
   m_Name: Sad Source
@@ -31,6 +32,24 @@ Transform:
   m_Father: {fileID: 670087335135934015}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3990687596292022069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133627213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3dd29e51aaec428c16f2124234779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: mb-us1
+  pitch: 50
+  range: 50
+  rate: 200
+  wordgap: 10
+  intonation: 0
 --- !u!82 &133627214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -136,8 +155,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 911313100}
+  - component: {fileID: 5136430708827920561}
   - component: {fileID: 911313099}
   - component: {fileID: 1737462608}
+  - component: {fileID: 1439823054}
   m_Layer: 0
   m_Name: Happy Source
   m_TagString: Untagged
@@ -159,6 +180,24 @@ Transform:
   m_Father: {fileID: 670087335135934015}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5136430708827920561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911313098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3dd29e51aaec428c16f2124234779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: mb-us1
+  pitch: 109
+  range: 50
+  rate: 200
+  wordgap: 10
+  intonation: 0
 --- !u!82 &911313099
 AudioSource:
   m_ObjectHideFlags: 0
@@ -270,6 +309,24 @@ AudioChorusFilter:
   m_Delay: 40
   m_Rate: 0.8
   m_Depth: 0.03
+--- !u!114 &1439823054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911313098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3dd29e51aaec428c16f2124234779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: ms-us1
+  pitch: 50
+  range: 50
+  rate: 200
+  wordgap: 10
+  intonation: 0
 --- !u!1 &231000558625908099
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4326778248995461080}
+  - component: {fileID: 3138087278614520203}
   - component: {fileID: 1134473714696386012}
   m_Layer: 0
   m_Name: Angry Source
@@ -301,6 +359,24 @@ Transform:
   m_Father: {fileID: 670087335135934015}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3138087278614520203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231000558625908099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3dd29e51aaec428c16f2124234779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: mb-us1
+  pitch: 50
+  range: 50
+  rate: 200
+  wordgap: 10
+  intonation: 0
 --- !u!82 &1134473714696386012
 AudioSource:
   m_ObjectHideFlags: 0
@@ -448,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7423e13850ebd41a515edd899b7985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voiceID: Tweaky
+  voiceID: mb-us1
 --- !u!114 &670087335135934013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   said_line: {fileID: 0}
+  mood_text: {fileID: 0}
   happy_source: {fileID: 911313099}
   sad_source: {fileID: 133627214}
   aroused_source: {fileID: 8266664933106559371}
@@ -500,6 +577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5542489469075302953}
+  - component: {fileID: 5997018929901802576}
   - component: {fileID: 1475889027840422070}
   m_Layer: 0
   m_Name: Curious Source
@@ -522,6 +600,24 @@ Transform:
   m_Father: {fileID: 670087335135934015}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5997018929901802576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4826222950415222606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3dd29e51aaec428c16f2124234779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: mb-us1
+  pitch: 50
+  range: 50
+  rate: 200
+  wordgap: 10
+  intonation: 0
 --- !u!82 &1475889027840422070
 AudioSource:
   m_ObjectHideFlags: 0
@@ -627,6 +723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2198387030631479485}
+  - component: {fileID: 3591205853474570070}
   - component: {fileID: 4496765039685087724}
   m_Layer: 0
   m_Name: Disgusted Source
@@ -649,6 +746,24 @@ Transform:
   m_Father: {fileID: 670087335135934015}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3591205853474570070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450559386868805469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3dd29e51aaec428c16f2124234779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: mb-us1
+  pitch: 50
+  range: 50
+  rate: 200
+  wordgap: 10
+  intonation: 0
 --- !u!82 &4496765039685087724
 AudioSource:
   m_ObjectHideFlags: 0
@@ -754,7 +869,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1949194979354234693}
+  - component: {fileID: 1098956438610824050}
   - component: {fileID: 8266664933106559371}
+  - component: {fileID: 177872521}
   m_Layer: 0
   m_Name: Aroused Source
   m_TagString: Untagged
@@ -776,6 +893,24 @@ Transform:
   m_Father: {fileID: 670087335135934015}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1098956438610824050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7050028150068554642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b3dd29e51aaec428c16f2124234779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: mb-us1
+  pitch: 50
+  range: 50
+  rate: 200
+  wordgap: 10
+  intonation: 0
 --- !u!82 &8266664933106559371
 AudioSource:
   m_ObjectHideFlags: 0
@@ -872,3 +1007,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!164 &177872521
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7050028150068554642}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: 0
+  m_RoomHF: 0
+  m_DecayTime: 1
+  m_DecayHFRatio: 0.5
+  m_ReflectionsLevel: -10000
+  m_ReverbLevel: 0
+  m_ReverbDelay: 0.04
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 27
