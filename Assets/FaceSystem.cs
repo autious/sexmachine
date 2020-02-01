@@ -96,8 +96,8 @@ public class FaceSystem : MonoBehaviour {
             SetTears(false);
             SetMad(false);
 
-            faceFollow.posDistance = Vector3.one * 2f;
-            faceFollow.speed = 0.3f;
+            faceFollow.posDistance = Vector3.one * 1f;
+            faceFollow.speed = 0.5f;
             CameraHead.ScreenShake = 0;
 
             break;
