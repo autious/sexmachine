@@ -10,20 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Wedding
+  m_Name: Chorizo
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   correctlyAnswered: 0
   breadText:
-  - breadText: Tell me, my wedding gift,
-    emotionState: 1
-  - breadText: Did you really climb that mountain to get that holy sword?
-    emotionState: 0
+  - breadText: Ok! But for real!
+    emotionState: 2
+  - breadText: The delux chorizo secret in the fridge
+    emotionState: 2
+  - breadText: Did you take it?!
+    emotionState: 3
   expectedAnswer: 1
   wrongAnswer:
-  - breadText: I knew it...
+  - breadText: You're deflecting again!
+    emotionState: 2
+  - breadText: I don't care about food!
+    emotionState: 2
+  - breadText: I can't eat!
     emotionState: 3
   rightAnswer:
-  - breadText: Mmm mm mmm mmm?
-    emotionState: 0
+  - breadText: That's good
+    emotionState: 1
+  - breadText: I can't eat
+    emotionState: 1
+  - breadText: Silly Willy
+    emotionState: 1

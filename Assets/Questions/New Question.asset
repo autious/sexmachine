@@ -10,20 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Wedding
+  m_Name: New Question
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   correctlyAnswered: 0
-  breadText:
-  - breadText: Tell me, my wedding gift,
-    emotionState: 1
-  - breadText: Did you really climb that mountain to get that holy sword?
-    emotionState: 0
-  expectedAnswer: 1
-  wrongAnswer:
-  - breadText: I knew it...
-    emotionState: 3
-  rightAnswer:
-  - breadText: Mmm mm mmm mmm?
-    emotionState: 0
+  breadText: []
+  expectedAnswer: 0
+  wrongAnswer: []
+  rightAnswer: []
