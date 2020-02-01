@@ -8,8 +8,8 @@ public class WobbleHandler : MonoBehaviour
     Vector3 ogRot;
 
     [Header("Position")]
-    [SerializeField] Vector3 posDistance;
-    [SerializeField] float speed = 0.2f;
+    public Vector3 posDistance;
+    public float speed = 0.2f;
 
     [SerializeField] bool followOgPos = false;
     [SerializeField] Transform followTarget;
@@ -63,6 +63,12 @@ public class WobbleHandler : MonoBehaviour
     }
 
     Vector3 calc = Vector3.zero;
+    Vector3 vel = Vector3.zero;     //The Launch! (Only for the begining to kinda give the object an extra push!)
+
+    [Header("Lerp")]
+    [SerializeField] float fric = 0.9f;//The friction, higher value = lower friction! (It's beacuse vel*=fric)
+    [SerializeField] float amount = 2; //The 'update speed', higher value = smoother!
+    [SerializeField] Vector2 amountRange = new Vector2(0.1f, 0.2f); //The 'update speed', higher value = smoother!
 
     Vector3 Spring(Vector3 myPos, Vector3 gotoPos) {
 
@@ -84,12 +90,6 @@ public class WobbleHandler : MonoBehaviour
         return calc;
     }
 
-    Vector3 vel = Vector3.zero;     //The Launch! (Only for the begining to kinda give the object an extra push!)
-
-    [Header("Lerp")]
-    [SerializeField] float fric = 0.9f;//The friction, higher value = lower friction! (It's beacuse vel*=fric)
-    [SerializeField] float amount = 2; //The 'update speed', higher value = smoother!
-    [SerializeField] Vector2 amountRange = new Vector2(0.1f, 0.2f); //The 'update speed', higher value = smoother!
 
 
 }

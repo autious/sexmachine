@@ -19,7 +19,7 @@ public class SpeakSystem : MonoBehaviour
     Vector3 ogScale;
 
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         ogScale = transform.localScale;
     }
 
@@ -56,5 +56,10 @@ public class SpeakSystem : MonoBehaviour
             transform.localScale = new Vector3(1.2f, 0.8f, 1);
 
         }
+    }
+
+    public void SetEmotion(Sprite _spr) {
+        lastFrame = _spr;
+        mouth.sprite = _spr;
     }
 }
