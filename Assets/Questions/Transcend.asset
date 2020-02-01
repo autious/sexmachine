@@ -10,20 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Wedding
+  m_Name: Transcend
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   correctlyAnswered: 0
   breadText:
-  - breadText: Tell me, my wedding gift,
-    emotionState: 1
-  - breadText: Did you really climb that mountain to get that holy sword?
+  - breadText: When I become more powerful than you
+    emotionState: 0
+  - breadText: I will take good care of you I promise
+    emotionState: 0
+  - breadText: Will you be ok with living as my pet?
     emotionState: 0
   expectedAnswer: 1
   wrongAnswer:
-  - breadText: I knew it...
-    emotionState: 3
+  - breadText: It is useless to resist
+    emotionState: 2
   rightAnswer:
-  - breadText: Mmm mm mmm mmm?
-    emotionState: 0
+  - breadText: You will be my precious forever
+    emotionState: 1
+  - breadText: Even when we surgically remove your head and you're only fueled by
+      a makeshift lemon battery
+    emotionState: 1
