@@ -16,6 +16,8 @@ public class SpeakSystem : MonoBehaviour
     bool isSpeaking;
     float speakTime;
 
+    public bool IsSpeaking => isSpeaking;
+
     Vector3 ogScale;
 
     // Start is called before the first frame update
@@ -44,7 +46,7 @@ public class SpeakSystem : MonoBehaviour
         }
     }
 
-    void DoSpeak() {
+    public void DoSpeak() {
         speakTime = openTime;
         mainTransform.position -= Vector3.up * 0.2f;
 
