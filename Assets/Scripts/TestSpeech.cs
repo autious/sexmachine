@@ -9,7 +9,7 @@ public class TestSpeech : MonoBehaviour
     void Start()
     {
         // TEST speech
-        Speech.instance.Say(sayAtStart);
+        //Speech.instance.Say(sayAtStart);
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class TestSpeech : MonoBehaviour
         // test pressing any keys to say that character
         if (Input.anyKeyDown)
         {
-            Speech.instance.Say(Input.inputString);
+            //Speech.instance.Say(Input.inputString);
         }
     }
 }
