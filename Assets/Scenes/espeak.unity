@@ -400,72 +400,77 @@ AudioDistortionFilter:
   m_GameObject: {fileID: 1440771956}
   m_Enabled: 1
   m_DistortionLevel: 0.5
---- !u!1 &1665498520
-GameObject:
+--- !u!1001 &670087336692190116
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1665498523}
-  - component: {fileID: 1665498522}
-  - component: {fileID: 1665498521}
-  m_Layer: 0
-  m_Name: '#SpeechManager'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1665498521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665498520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052d1ee767c68ce40b92671d5e1eabf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Options:
-    dllPathPattern: '{assets}/Plugins/espeak/__{name}'
-    assemblyPaths: []
-    loadingMode: 1
-    unixDlopenFlags: 1
-    threadSafe: 0
-    enableCrashLogs: 0
-    crashLogsDir: '{assets}/'
-    crashLogsStackTrace: 0
-    mockAllNativeFunctions: 1
-    onlyInEditor: 1
---- !u!114 &1665498522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665498520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7423e13850ebd41a515edd899b7985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceID: Tweaky
-  audio_source: {fileID: 1440771957}
---- !u!4 &1665498523
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665498520}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 670087335135934012, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_Name
+      value: '#SpeechManager'
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934015, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934014, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: audio_source
+      value: 
+      objectReference: {fileID: 1440771957}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b8099e9dbe21794784b763c93191b98, type: 3}
