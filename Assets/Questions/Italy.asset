@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
-  correctlyAnswered: 0
+  correctlyAnswered: 1
+  correct_happiness_boost: 0.1
+  incorrect_happiness_loss: -0.1
   breadText:
   - breadText: So. Remeber our trip to Italy?
     emotionState: 0
