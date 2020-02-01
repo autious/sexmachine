@@ -15,14 +15,7 @@ public class CommunicationsManager : MonoBehaviour {
     }
 
     public Text said_line;
-
-    public string voice = "ms-us1";
-    public int pitch = 50;
-    public int range = 50;
-    public int rate = 200;
-    public int wordgap = 10;
-    //public int capitals = 0;
-    public int intonation = 0;
+    public Text mood_text;
 
     public AudioSource happy_source;
     public AudioSource sad_source;
@@ -30,6 +23,9 @@ public class CommunicationsManager : MonoBehaviour {
     public AudioSource curious_source;
     public AudioSource disgusted_source;
     public AudioSource angry_source;
+
+
+    Mood current_mood = Mood.Happy;
 
     void Start() {
     }
@@ -50,22 +46,54 @@ public class CommunicationsManager : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.D)) {
             Say("Remember the time we used to have, in italy?");
         }
+
+        if(Input.GetKeyDown(KeyCode.P)) {
+            Mood[] moods = (Mood[]) System.Enum.GetValues(typeof(Mood));
+            SetMood(moods[UnityEngine.Random.Range(0,moods.Length)]);
+        }
+    }
+
+    void SetMood(Mood mood) {
+        current_mood = mood;
+        mood_text.text = current_mood.ToString();
+    }
+
+    public AudioSource GetMoodSource(Mood mood) {
+        switch(mood) {
+            case Mood.Angry:
+                return angry_source;
+            case Mood.Aroused:
+                return aroused_source;
+            case Mood.Curious:
+                return curious_source;
+            case Mood.Disgusted:
+                return disgusted_source;
+            case Mood.Happy:
+                return happy_source;
+            case Mood.Sad:
+                return sad_source;
+        }
+        return angry_source;
     }
 
     void Say(string text) {
-        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetVoice, message = voice });
-        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetPitch, param1 = pitch });
-        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetRange, param1 = range });
-        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetRate, param1 = rate });
-        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetWordGap, param1 = wordgap });
-        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetIntonation, param1 = intonation });
-        //Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetCapitals, param1 = capitals });
+        VoiceMood vm = GetMoodSource(current_mood).GetComponent<VoiceMood>();
+        if(vm != null) {
+            Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetVoice, message = vm.voice });
+            Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetPitch, param1 = vm.pitch });
+            Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetRange, param1 = vm.range });
+            Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetRate, param1 = vm.rate });
+            Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetWordGap, param1 = vm.wordgap });
+            Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetIntonation, param1 = vm.intonation });
+            //Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetCapitals, param1 = vm.capitals });
+        }
         Speech.instance.Say(text, VoiceGeneratedCallback);
     }
 
     void VoiceGeneratedCallback(string line, AudioClip data) {
         said_line.text = line;
-        happy_source.clip = data;
-        happy_source.Play();
+        AudioSource source = GetMoodSource(current_mood);
+        source.clip = data;
+        source.Play();
     }
 }
