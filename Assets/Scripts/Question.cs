@@ -94,7 +94,6 @@ public class Question : TalkingElement
                 PlayerAnswer answer = InputManager.yesAndNo.GetAnswer();
                 if (answer != PlayerAnswer.Nothing)
                 {
-                    Debug.Log("LOL");
                     if (expectedAnswer != answer)
                     {
                         questionState = 2;
