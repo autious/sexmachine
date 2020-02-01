@@ -202,22 +202,22 @@ public static class InputManager
 {
     public static float GetX()
     {
-        return Input.GetAxis("Vertical");
+        return Input.GetAxisRaw("Horizontal");
     }
 
     public static float GetY()
     {
-        return Input.GetAxis("Horizontal");
+        return Input.GetAxisRaw("Vertical");
     }
 
     public static bool IsForward()
     {
-        return Input.GetAxis("Vertical") > 0;
+        return Input.GetAxisRaw("Vertical") > 0;
     }
 
     public static bool IsBackward()
     {
-        return Input.GetAxis("Vertical") < 0;
+        return Input.GetAxisRaw("Vertical") < 0;
     }
 
     public static bool PushToTalk()
