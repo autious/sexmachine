@@ -10,6 +10,7 @@ public class TalkingElement : ScriptableObject
 {
     public TalkingElement rightAnswerNode;
     public TalkingElement wrongAnswerNode;
+    [NonSerialized]
     public bool correctlyAnswered;
     public virtual Question.StringEmotion GetText()
     {
@@ -43,8 +44,8 @@ public class RegularTalkingPoint: TalkingElement
 
 public static class AndroidStatus
 {
-    public static float happniess;
-    public static float sexualPleasue;
+    public static float happiness = 0.0f;
+    public static float sexualPleasure = 0.0f;
 
 
     public static List<TalkingElement> talkingPoints = new List<TalkingElement>();
@@ -84,6 +85,9 @@ public class Gameplay : MonoBehaviour
 
     public AndroidState androidState;
     // Start is called before the first frame update
+
+    public Text happiness_debug = null;
+
     void Start()
     {
         fullLine = "";
@@ -96,7 +100,9 @@ public class Gameplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(happiness_debug != null) {
+            happiness_debug.text = "" + AndroidStatus.happiness;
+        }
         outputDia.text = readLine;
 
         if (!currentTalkingElement || currentTalkingElement.GoNext())
@@ -109,10 +115,18 @@ public class Gameplay : MonoBehaviour
 
                 if(currentTalkingElement.correctlyAnswered)
                 {
+                    if(currentTalkingElement.GetType() == typeof(Question)) {
+                        Question q = (Question)currentTalkingElement;
+                        AndroidStatus.happiness += q.correct_happiness_boost;
+                    }
                     nextElement = currentTalkingElement.rightAnswerNode;
                 }
                 else
                 {
+                    if(currentTalkingElement.GetType() == typeof(Question)) {
+                        Question q = (Question)currentTalkingElement;
+                        AndroidStatus.happiness += q.incorrect_happiness_loss;
+                    }
                     nextElement = currentTalkingElement.wrongAnswerNode;
                 }
 
@@ -242,15 +256,16 @@ public class AndroidUpset : AndroidState
 
     public override void Update()
     {
-      if(AndroidStatus.happniess < 10)
+        if(AndroidStatus.happiness < 1.0f)
         {
             if (gameRef.currentTalkingElement == null)
             {
                 AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
                 questionTraverser++;
 
-                if (gameRef.questions.Length <= questionTraverser)
+                if (gameRef.questions.Length <= questionTraverser) {
                     questionTraverser = 0;
+                }
             }
         }
     }
