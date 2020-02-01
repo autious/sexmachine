@@ -16,6 +16,14 @@ public class CommunicationsManager : MonoBehaviour {
 
     public Text said_line;
 
+    public string voice = "ms-us1";
+    public int pitch = 50;
+    public int range = 50;
+    public int rate = 200;
+    public int wordgap = 10;
+    //public int capitals = 0;
+    public int intonation = 0;
+
     public AudioSource happy_source;
     public AudioSource sad_source;
     public AudioSource aroused_source;
@@ -45,6 +53,13 @@ public class CommunicationsManager : MonoBehaviour {
     }
 
     void Say(string text) {
+        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetVoice, message = voice });
+        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetPitch, param1 = pitch });
+        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetRange, param1 = range });
+        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetRate, param1 = rate });
+        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetWordGap, param1 = wordgap });
+        Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetIntonation, param1 = intonation });
+        //Speech.instance.QueueMessage(new Speech.IncomingMessage{ type = Speech.IncomingMessageType.SetCapitals, param1 = capitals });
         Speech.instance.Say(text, VoiceGeneratedCallback);
     }
 

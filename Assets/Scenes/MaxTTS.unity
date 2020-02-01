@@ -1236,11 +1236,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 670087335135934014, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: voiceID
+      value: mb-us1
+      objectReference: {fileID: 0}
     - target: {fileID: 7162181447335875859, guid: 4b8099e9dbe21794784b763c93191b98,
         type: 3}
       propertyPath: said_line
       value: 
       objectReference: {fileID: 1229278291}
+    - target: {fileID: 7162181447335875859, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: pitch
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162181447335875859, guid: 4b8099e9dbe21794784b763c93191b98,
+        type: 3}
+      propertyPath: voice
+      value: mb-us1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b8099e9dbe21794784b763c93191b98, type: 3}
 --- !u!1 &1755674958
