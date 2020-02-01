@@ -85,6 +85,13 @@ public class CommunicationsManager : MonoBehaviour {
 
     void VoiceGeneratedCallback(string line, AudioClip data) {
         //said_line.text = line;
+
+        happy_source.Stop();
+        sad_source.Stop();
+        blush_source.Stop();
+        idle_source.Stop();
+        angry_source.Stop();
+
         AudioSource source = GetMoodSource(current_mood);
         source.clip = data;
         source.Play();
