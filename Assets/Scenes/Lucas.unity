@@ -3315,6 +3315,11 @@ PrefabInstance:
         paying the price, you goddamn idiot. I will shit fury all over you and you
         will drown in it.\r\n\r\nYou\u2019re fucking dead, kiddo."
       objectReference: {fileID: 0}
+    - target: {fileID: 2541323262981551641, guid: 6569428af96bd8941a62f5f3fc4953f1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.91
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6569428af96bd8941a62f5f3fc4953f1, type: 3}
 --- !u!1001 &7741514788036153898
