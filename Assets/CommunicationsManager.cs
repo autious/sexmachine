@@ -21,31 +21,43 @@ public class CommunicationsManager : MonoBehaviour {
     public AudioSource angry_source;
 
     FaceSystem.Emotion current_mood = FaceSystem.Emotion.idle;
+    AudioSource current_source = null;
 
     void Start() {
     }
 
+    float prev_amplitude = 0.0f;
+    float[] amplitude_sample_buffer = new float[256];
     // Update is called once per frame
     void Update() {
-        //if(Input.GetKeyDown(KeyCode.W)) { 
-        //    Say("Why don't you love me anymore?");
-        //}
-        //if(Input.GetKeyDown(KeyCode.S)) {
-        //    Say("That's the sweetest thing i've ever heard");
-        //}
+        SpeakSystem ss = GameObject.FindObjectOfType<SpeakSystem>();
+        if(current_source != null && current_source.isPlaying) { 
+            float pos = current_source.time;
+            AudioClip clip = current_source.clip;
 
-        //if(Input.GetKeyDown(KeyCode.A)) {
-        //    Say("Oh, baby, just like that");
-        //}
+            int frequency = clip.frequency;
 
-        //if(Input.GetKeyDown(KeyCode.D)) {
-        //    Say("Remember the time we used to have, in italy?");
-        //}
+            int current_sample_pos = (int)(pos*frequency);
 
-        //if(Input.GetKeyDown(KeyCode.P)) {
-        //    FaceSystem.Emotion[] moods = (FaceSystem.Emotion[]) System.Enum.GetValues(typeof(FaceSystem.Emotion));
-        //    SetMood(moods[UnityEngine.Random.Range(0,moods.Length)]);
-        //}
+            if(current_sample_pos + amplitude_sample_buffer.Length < clip.samples) {
+                clip.GetData(amplitude_sample_buffer, current_sample_pos);
+
+                float sum = 0.0f;
+                for(int i = 0; i < amplitude_sample_buffer.Length; i++) {
+                    sum += UnityEngine.Mathf.Abs(amplitude_sample_buffer[i]);
+                }
+                sum /= amplitude_sample_buffer.Length;
+
+                if(sum > prev_amplitude * 1.4f) {
+                    if(ss.IsSpeaking == false) {
+                        ss.DoSpeak();
+                    }
+                }
+                prev_amplitude = sum; 
+            }
+        } else {
+            prev_amplitude = 0;
+        }
     }
 
     public void SetMood(FaceSystem.Emotion mood) {
@@ -86,14 +98,17 @@ public class CommunicationsManager : MonoBehaviour {
     void VoiceGeneratedCallback(string line, AudioClip data) {
         //said_line.text = line;
 
-        happy_source.Stop();
-        sad_source.Stop();
-        blush_source.Stop();
-        idle_source.Stop();
-        angry_source.Stop();
+        //happy_source.Stop();
+        //sad_source.Stop();
+        //blush_source.Stop();
+        //idle_source.Stop();
+        //angry_source.Stop();
+        if(current_source != null) {
+            current_source.Stop();
+        }
 
-        AudioSource source = GetMoodSource(current_mood);
-        source.clip = data;
-        source.Play();
+        current_source = GetMoodSource(current_mood);
+        current_source.clip = data;
+        current_source.Play();
     }
 }
