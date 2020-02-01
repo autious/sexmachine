@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
   m_Name: Italy
   m_EditorClassIdentifier: 
+  rightAnswerNode: {fileID: 0}
+  wrongAnswerNode: {fileID: 0}
+  correctlyAnswered: 0
   breadText:
   - So. remember our trip to Italy?
-  inExpectedAnswer: 1
+  expectedAnswer: 2
   wrongAnswer:
   - You fiend!
   - Our trip was to Boston idiot!

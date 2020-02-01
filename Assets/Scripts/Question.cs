@@ -13,6 +13,7 @@ public enum PlayerAnswer
 [CreateAssetMenu(menuName = "Dialogue")]
 public class Question : TalkingElement
 {
+
     bool allDone;
     int questionState = 0;
     int currentElement = 0;
@@ -27,60 +28,78 @@ public class Question : TalkingElement
         this.expectedAnswer = inExpectedAnswer;
         this.wrongAnswer = inWrongAnswer;
         this.rightAnswer = inRightAnswer;
+        allDone = false;
+        questionState = 0;
+        currentElement = 0;
     }
+
 
     public override string GetText()
     {
+        string toRead = "";
      switch(questionState)
         {
             case 0:
-                return breadText[currentElement] + ":" + currentElement;
+                if (currentElement < breadText.Count)
+                    toRead =  breadText[currentElement];
                 break;
             case 1:
-                return breadText[currentElement] + ":" + currentElement;
+                if (currentElement < breadText.Count)
+                    toRead =  breadText[currentElement];
                 break;
             case 2:
-                return wrongAnswer[currentElement] + ":" + currentElement;
+                if (currentElement < wrongAnswer.Count)
+                    toRead = wrongAnswer[currentElement];
                 break;
             case 3:
-                return rightAnswer[currentElement] + ":" + currentElement;
+                if(currentElement < rightAnswer.Count)
+                    toRead = rightAnswer[currentElement];
                 break;
         }
-        return "Don't go here";
+
+        return toRead;
     }
 
     public override bool GoNext()
     {
+        allDone = false;
         switch (questionState)
         {
             case 0:
-                if (currentElement < breadText.Count)
+                if (currentElement == breadText.Count-1)
+                {
+                    currentElement++;
+                }
+                else if (currentElement < breadText.Count)
                 {
                     if (InputManager.PushToTalk())
                     {
                         currentElement++;
                     }
                 }
-                else
+
+                if(currentElement >= breadText.Count)
                 {
-                    currentElement = 0;
+                    currentElement = breadText.Count - 1;
                     questionState = 1;
                 }
                 break;
             case 1:
 
                 PlayerAnswer answer = InputManager.yesAndNo.GetAnswer();
-
-                if(answer != PlayerAnswer.Nothing)
+                if (answer != PlayerAnswer.Nothing)
                 {
                     if (expectedAnswer != answer)
                     {
                         questionState = 2;
+                        correctlyAnswered = false;
                     }
                     else
                     {
                         questionState = 3;
+                        correctlyAnswered = true;
                     }
+                    currentElement = 0;
                 }
 
                 break;
@@ -117,7 +136,11 @@ public class Question : TalkingElement
         }
 
 
-           
+        if(allDone)
+        {
+            currentElement = 0;
+            questionState = 0;
+        }
 
         return allDone;
     }
