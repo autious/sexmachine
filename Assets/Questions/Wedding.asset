@@ -16,10 +16,14 @@ MonoBehaviour:
   wrongAnswerNode: {fileID: 0}
   correctlyAnswered: 0
   breadText:
-  - Tell me, my wedding gift?
-  - Did you really climb that mountain to get that holy sword?
+  - breadText: Tell me, my wedding gift?
+    emotionState: 1
+  - breadText: Did you really climb that mountain to get that holy sword?
+    emotionState: 0
   expectedAnswer: 1
   wrongAnswer:
-  - I knew it...
+  - breadText: I knew it...
+    emotionState: 3
   rightAnswer:
-  - Mmm mm mmm mmm
+  - breadText: Mmm mm mmm mmm?
+    emotionState: 0

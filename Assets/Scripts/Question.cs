@@ -17,12 +17,18 @@ public class Question : TalkingElement
     bool allDone;
     int questionState = 0;
     int currentElement = 0;
-    public List<string> breadText;
+    public List<StringEmotion> breadText;
     public PlayerAnswer expectedAnswer;
-    public List<string> wrongAnswer;
-    public List<string> rightAnswer;
+    public List<StringEmotion> wrongAnswer;
+    public List<StringEmotion> rightAnswer;
 
-    public Question(List<string> inBreadText, PlayerAnswer inExpectedAnswer, List<string> inWrongAnswer, List<string> inRightAnswer)
+    [System.Serializable]
+    public class StringEmotion {
+        [TextArea] public string breadText;
+        public FaceSystem.Emotion emotionState;
+    }
+
+    public Question(List<StringEmotion> inBreadText, PlayerAnswer inExpectedAnswer, List<StringEmotion> inWrongAnswer, List<StringEmotion> inRightAnswer)
     {
         breadText = inBreadText;
         this.expectedAnswer = inExpectedAnswer;
@@ -34,9 +40,9 @@ public class Question : TalkingElement
     }
 
 
-    public override string GetText()
+    public override StringEmotion GetText()
     {
-        string toRead = "";
+        StringEmotion toRead = null;
      switch(questionState)
         {
             case 0:

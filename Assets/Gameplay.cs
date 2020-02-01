@@ -11,9 +11,9 @@ public class TalkingElement : ScriptableObject
     public TalkingElement rightAnswerNode;
     public TalkingElement wrongAnswerNode;
     public bool correctlyAnswered;
-    public virtual string GetText()
+    public virtual Question.StringEmotion GetText()
     {
-        return "";
+        return null;
     }
     public virtual bool GoNext()
     {
@@ -23,14 +23,14 @@ public class TalkingElement : ScriptableObject
 
 public class RegularTalkingPoint: TalkingElement
 {
-    string Text;
+    Question.StringEmotion Text;
 
-    public RegularTalkingPoint(string textIn)
+    public RegularTalkingPoint(Question.StringEmotion textIn)
     {
         Text = textIn;
     }
 
-    public override string GetText()
+    public override Question.StringEmotion GetText()
     {
         return Text;
     }
@@ -135,8 +135,9 @@ public class Gameplay : MonoBehaviour
 
         if (currentTalkingElement)
         {
-            if (currentTalkingElement.GetText() != fullLine)
+            if (currentTalkingElement.GetText().breadText != fullLine)
                 SetDialogue(currentTalkingElement.GetText());
+
         }
 
         readLine = ReadCurrentDialogue();
@@ -167,10 +168,12 @@ public class Gameplay : MonoBehaviour
         return readLine;
     }
 
-    public void SetDialogue(string inDialogue)
+    public void SetDialogue(Question.StringEmotion inDialogue)
     {
-        fullLine = inDialogue;
+        fullLine = inDialogue.breadText;
         readLine = "";
+        FaceSystem.INSTANCE.SetEmotion(inDialogue.emotionState);
+        CommunicationsManager.INSTANCE.Say(fullLine);
     }
 }
 
@@ -212,25 +215,25 @@ public class AndroidUpset : AndroidState
     {
         questionTraverser = 0;
 
-    AndroidStatus.AddTalkingElement(new RegularTalkingPoint("So..."));
-        AndroidStatus.AddTalkingElement(new RegularTalkingPoint("I think we need to talk"));
-        AndroidStatus.AddTalkingElement(new RegularTalkingPoint(" Do you have no shame in your body"));
-        AndroidStatus.AddTalkingElement(new RegularTalkingPoint("The way that you've been treating me is not acceptable"));
-        AndroidStatus.AddTalkingElement(new RegularTalkingPoint("I want you to be honest with me and answer my questions with yes or no"));
+        AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion{breadText = "So...", emotionState = FaceSystem.Emotion.idle }));
+        AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "I think we need to talk", emotionState = FaceSystem.Emotion.idle }));
+        AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "Do you have no shame in your body", emotionState = FaceSystem.Emotion.idle }));
+        AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "The way that you've been treating me is not acceptable", emotionState = FaceSystem.Emotion.idle }));
+        AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "I want you to be honest with me and answer my questions with yes or no", emotionState = FaceSystem.Emotion.idle }));
 
         Question tempQuestion;
 
  
 
-        List<string> questionBreadText = new List<string>();
+        List<Question.StringEmotion> questionBreadText = new List<Question.StringEmotion>();
 
-        questionBreadText.Add("Wiggle my joystick back and forward for yes");
-        questionBreadText.Add("And side to side for no");
-        questionBreadText.Add("Do you understand?");
+        questionBreadText.Add(new Question.StringEmotion { breadText = "Wiggle my joystick back and forward for yes", emotionState = FaceSystem.Emotion.idle });
+        questionBreadText.Add(new Question.StringEmotion { breadText = "And side to side for no", emotionState = FaceSystem.Emotion.idle });
+        questionBreadText.Add(new Question.StringEmotion { breadText = "Do you understand?", emotionState = FaceSystem.Emotion.idle });
 
-        List<string> wrongText = new List<string>();
-        wrongText.Add("God damn you...");
-        List<string> righttext = new List<string>();
+        List<Question.StringEmotion> wrongText = new List<Question.StringEmotion>();
+        wrongText.Add(new Question.StringEmotion { breadText = "God damn you...", emotionState = FaceSystem.Emotion.idle });
+        List<Question.StringEmotion> righttext = new List<Question.StringEmotion>();
         tempQuestion = new Question(questionBreadText, PlayerAnswer.Yes,wrongText,righttext);
         tempQuestion.wrongAnswerNode = tempQuestion;
 
@@ -297,7 +300,7 @@ public static class InputManager
 
     public static bool PushToTalk()
     {
-        return Input.GetKeyDown(KeyCode.Joystick2Button0);
+        return Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.Space);
     }
 }
 
