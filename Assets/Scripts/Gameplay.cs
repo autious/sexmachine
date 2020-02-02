@@ -134,20 +134,24 @@ public class Gameplay : MonoBehaviour
         androidState.Enter();
         AndroidStatus.AddTalkingElement(starting_element);
     }
+
+    public void GameOver() {
+        SetDialogue(new Question.StringEmotion{ breadText = "You don't really love me.", emotionState = FaceSystem.Emotion.angry });
+    }
     
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F8)) {
-            game_mode = GameMode.Minigame;
-            game_sequence = GameSequence.Balcony;
-            cheers_game.SetActive(true);
-        }
-        if(Input.GetKeyDown(KeyCode.F9)) {
-            game_mode = GameMode.Talking;
-            game_sequence = GameSequence.Livingroom;
-            cheers_game.SetActive(false);
-        }
+        //if(Input.GetKeyDown(KeyCode.F8)) {
+        //    game_mode = GameMode.Minigame;
+        //    game_sequence = GameSequence.Balcony;
+        //    cheers_game.SetActive(true);
+        //}
+        //if(Input.GetKeyDown(KeyCode.F9)) {
+        //    game_mode = GameMode.Talking;
+        //    game_sequence = GameSequence.Livingroom;
+        //    cheers_game.SetActive(false);
+        //}
         if(Input.GetKeyDown(KeyCode.F6)) {
             AndroidStatus.happiness -= 0.1f;
         }
@@ -196,6 +200,13 @@ public class Gameplay : MonoBehaviour
                     cheers_game.SetActive(true);
                     game_mode = GameMode.Minigame;
                 }
+
+                if(game_sequence == GameSequence.Bedroom) {
+                    currentTalkingElement = null;
+                    SetDialogue(new Question.StringEmotion{ breadText = "Let's take this all the way", emotionState = FaceSystem.Emotion.blush });
+                    sex_game.SetActive(true);
+                    game_mode = GameMode.Minigame;
+                }
             }
         }
 
@@ -207,22 +218,34 @@ public class Gameplay : MonoBehaviour
                     SetDialogue(new Question.StringEmotion{ breadText = "^^'", emotionState = FaceSystem.Emotion.blush });
                     game_mode = GameMode.BackToTalking;
                 } else if(pa == PlayerAnswer.No) {
-                    SetDialogue(new Question.StringEmotion{ breadText = ":(", emotionState = FaceSystem.Emotion.angry });
                     game_mode = GameMode.Failure;
                 } 
             } else if(game_sequence == GameSequence.Balcony) {
                 CheersGame cg = cheers_game.GetComponent<CheersGame>();
 
                 if(cg.won) {
-                    SetDialogue(new Question.StringEmotion{ breadText = "Let's head out to the bedroom...", emotionState = FaceSystem.Emotion.blush });
+                    SetDialogue(new Question.StringEmotion{ breadText = "Shall take this to the bedroom", emotionState = FaceSystem.Emotion.blush });
                     game_mode = GameMode.BackToTalking;
                 } else if(cg.lost) {
                     SetDialogue(new Question.StringEmotion{ breadText = "Why do you have to ruin every special moment we have?", emotionState = FaceSystem.Emotion.sad });
                     game_mode = GameMode.Failure;
-                } else if(cg.attempts != prev_cheer_attempts) {
+                } else if(cg.won == false && cg.lost == false && cg.attempts != prev_cheer_attempts) {
                     SetDialogue(new Question.StringEmotion{ breadText = "Can't you aim!?", emotionState = FaceSystem.Emotion.angry });
                     prev_cheer_attempts = cg.attempts;
                 }
+            } else if( game_sequence == GameSequence.Bedroom) {
+                SexHandler sh = sex_game.GetComponent<SexHandler>();
+                if(sh.finalized) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "You do care!", emotionState = FaceSystem.Emotion.happy });
+                    game_mode = GameMode.BackToTalking;
+                }
+            }
+        }
+
+        if(game_mode == GameMode.Failure) {
+            if(fail_state.active == false) {
+                fail_state.SetActive(true);
+                SetDialogue(new Question.StringEmotion{ breadText = "...", emotionState = FaceSystem.Emotion.serious });
             }
         }
 
@@ -239,6 +262,8 @@ public class Gameplay : MonoBehaviour
                     game_sequence = GameSequence.Bedroom;
                     game_mode = GameMode.Talking;
                     AndroidStatus.happiness = 0.0f;
+                } else if(game_sequence == GameSequence.Bedroom) {
+                    AndroidStatus.happiness = 100000000.0f;
                 }
             }
         }
@@ -418,13 +443,14 @@ public class AndroidUpset : AndroidState
                 List<RegularTalkingPoint> possibilities = new List<RegularTalkingPoint>();
 
                 foreach(RegularTalkingPoint rtp in gameRef.interjections) {
-                    if(AndroidStatus.happiness > rtp.happiness_min && AndroidStatus.happiness < rtp.happiness_max) {
+                    if(AndroidStatus.happiness >= rtp.happiness_min && AndroidStatus.happiness <= rtp.happiness_max) {
                         possibilities.Add(rtp);
                     }
                 }
 
                 if(possibilities.Count == 0) {
                     possibilities.AddRange(gameRef.interjections);
+                    Debug.LogWarning("No matching");
                 }
 
                 RegularTalkingPoint chosen = possibilities[UnityEngine.Random.Range(0,possibilities.Count)];

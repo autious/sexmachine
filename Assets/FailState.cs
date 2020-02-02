@@ -7,6 +7,8 @@ public class FailState : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip clipNoiseLoop, clipHandGrab;
 
+    public Gameplay gameplay;
+
     public void Hand() {
 
         aud.Stop();
@@ -22,7 +24,6 @@ public class FailState : MonoBehaviour
     }
 
     public void GameOver() {
-        CommunicationsManager.INSTANCE.SetMood(FaceSystem.Emotion.angry);
-        CommunicationsManager.INSTANCE.Say("You don't love me...");
+        gameplay.GameOver();
     }
 }

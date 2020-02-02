@@ -30,6 +30,8 @@ public class SexHandler : MonoBehaviour
     Color initColor;
     float myAlpha = 1;
 
+    public bool finalized = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,7 +108,8 @@ public class SexHandler : MonoBehaviour
             if(myAlpha > 0) {
                 myAlpha -= 1f * Time.deltaTime;
             } else {
-                //WE ARE DONE WITH THIS NOW
+                finalized = true;
+                directionText.gameObject.SetActive(false);
             }
         }
     }
