@@ -3494,6 +3494,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
+      propertyPath: livingroom_questions.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
       propertyPath: outputDia
       value: 
       objectReference: {fileID: 8957214479873404414}
@@ -3532,6 +3542,138 @@ PrefabInstance:
       propertyPath: button
       value: 
       objectReference: {fileID: 1421771427}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d503123a08303d04ab627d619df9c012,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 14205a4ac94611c48abb5df5ae4dac02,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ba0eaef83bb403649bfc802a8ad3aac1,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7734476af84a1ea47a3e751c304f8f10,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: a0b8cb1ce9e3e124c9e3c401b0a14188,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d548f3c5d744cc4796eab42da963a54,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: cae356f949d96dc45b635cb3948c384d,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 03af440048c2aa6428fc8e9a3739e843,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 697aee3add31a914086b9f9abc5bc1d7,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 85a4ec878aa8e7a48bdaa68197651500,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 871942edb891bae47917f6751abfb06e,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d1a728cadc9a8c4eaeaf7d2ef3c112b,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: livingroom_questions.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cfb4c98e5c1dfb41997c25e449c642d,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f5cb1f96b4f9de41a393675e503bdce,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ff664d98a89b0947a3fbd03a8f54289,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 338c29b502670014da2a77a4d71da540,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff2a56775c2aee948ab9bf8e22c64cd0,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 91190803c0e5b664c82cea83b8301335,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: ecf56945943ad4644bc7d077aac01176,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: e2410db3b81060b419d359da828248ac,
+        type: 2}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: balcony_questions.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 28f454ff0bba96f428f5b7624c605978,
+        type: 2}
     - target: {fileID: 6704839164332263404, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
       propertyPath: audMusic
