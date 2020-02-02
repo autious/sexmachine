@@ -101,6 +101,7 @@ public class Gameplay : MonoBehaviour
     public TalkingElement currentTalkingElement;
     #region ReadLine Variables
     public float dialogueTimeInterval;
+    public ChangeScene change_scene;
 
     string originalFullLine, fullLine, readLine;
 
