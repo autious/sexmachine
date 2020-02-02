@@ -1929,13 +1929,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outputDia: {fileID: 8957214479873404414}
   questions:
-  - {fileID: 11400000, guid: 7734476af84a1ea47a3e751c304f8f10, type: 2}
+  - {fileID: 11400000, guid: 871942edb891bae47917f6751abfb06e, type: 2}
   - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
   - {fileID: 11400000, guid: a0b8cb1ce9e3e124c9e3c401b0a14188, type: 2}
   - {fileID: 11400000, guid: 6d548f3c5d744cc4796eab42da963a54, type: 2}
   - {fileID: 11400000, guid: cae356f949d96dc45b635cb3948c384d, type: 2}
   - {fileID: 11400000, guid: 85a4ec878aa8e7a48bdaa68197651500, type: 2}
   - {fileID: 11400000, guid: 2d1a728cadc9a8c4eaeaf7d2ef3c112b, type: 2}
+  - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
+  - {fileID: 11400000, guid: cae356f949d96dc45b635cb3948c384d, type: 2}
   - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
   interjections:
   - {fileID: 11400000, guid: 19287d3336b5d9244ab0e68324d3f120, type: 2}
@@ -1944,6 +1946,7 @@ MonoBehaviour:
   dialogueTimeInterval: 0.03
   happiness_debug: {fileID: 1564751418}
   starting_element: {fileID: 11400000, guid: ba0eaef83bb403649bfc802a8ad3aac1, type: 2}
+  myName: 
 --- !u!4 &734187892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7741514786665766466, guid: e1d10c44a582f9941a106060ec2db85c,
