@@ -36,6 +36,8 @@ public class Question : TalkingElement
         incorrect_happiness_loss = -0.1f;
         questionState = 0;
         currentElement = 0;
+        happiness_min = -1.0f;
+        happiness_max = 1.0f;
     }
 
 
@@ -50,6 +52,8 @@ public class Question : TalkingElement
         currentElement = 0;
         correct_happiness_boost = 0.1f;
         incorrect_happiness_loss = -0.1f;
+        happiness_min = -1.0f;
+        happiness_max = 1.0f;
     }
 
     public override StringEmotion GetText()

@@ -12,10 +12,22 @@ public class TalkingElement : ScriptableObject
     public TalkingElement wrongAnswerNode;
     [NonSerialized]
     public bool correctlyAnswered;
+
+    [Range(-1.0f, 1.0f)]
+    public float happiness_min = -1.0f;  
+    [Range(-1.0f, 1.0f)]
+    public float happiness_max = 1.0f;
+
+    public TalkingElement() {
+        happiness_min = -1.0f;
+        happiness_max = 1.0f; 
+    }
+
     public virtual Question.StringEmotion GetText()
     {
         return null;
     }
+
     public virtual bool GoNext()
     {
         return false;
@@ -23,27 +35,14 @@ public class TalkingElement : ScriptableObject
 
     public virtual void Reset() {
     }
-}
 
-public class RegularTalkingPoint: TalkingElement
-{
-    Question.StringEmotion Text;
-
-    public RegularTalkingPoint(Question.StringEmotion textIn)
-    {
-        Text = textIn;
-    }
-
-    public override Question.StringEmotion GetText()
-    {
-        return Text;
-    }
-
-    public override bool GoNext()
-    {
-        return InputManager.PushToTalk();
+    public virtual void OnValidate() {
+        if(happiness_max < happiness_min) {
+            happiness_max = happiness_min;
+        }
     }
 }
+
 
 public static class AndroidStatus
 {
