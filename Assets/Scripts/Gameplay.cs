@@ -125,6 +125,10 @@ public class Gameplay : MonoBehaviour
     public GameObject sex_game;
 
     public GameObject fail_state;
+
+
+    public GameObject joystick;
+    public GameObject button;
     void Start()
     {
         fullLine = "";
