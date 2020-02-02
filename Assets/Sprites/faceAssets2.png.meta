@@ -26,6 +26,9 @@ TextureImporter:
   - first:
       213: 4053049383509517191
     second: faceAssets2_7
+  - first:
+      213: 8144797417278989230
+    second: faceAssets2_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -282,6 +285,27 @@ TextureImporter:
       bones: []
       spriteID: e0db82b42a5d00e40ac0fbf145b7832e
       internalID: 4053049383509517191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: faceAssets2_8
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 416
+        width: 187
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed90e1bd883ac9844983f51672d3fbee
+      internalID: 8144797417278989230
       vertices: []
       indices: 
       edges: []
