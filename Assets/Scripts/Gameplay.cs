@@ -90,8 +90,12 @@ public class Gameplay : MonoBehaviour
     public GameMode game_mode = GameMode.Talking;
     public GameSequence game_sequence = GameSequence.Livingroom;
     public Text outputDia;
-
+    
     public Question[] questions;
+    public Question[] livingroom_questions;
+    public Question[] balcony_questions;
+    public Question[] bedroom_questions;
+
     public RegularTalkingPoint[] interjections;
 
     public TalkingElement currentTalkingElement;
@@ -340,6 +344,7 @@ public class AndroidUpset : AndroidState
     }
 
     private bool was_interjection = false;
+    private Question prev_question = null;
     public override void Update()
     {
         if (gameRef.currentTalkingElement == null)
@@ -363,12 +368,40 @@ public class AndroidUpset : AndroidState
                 AndroidStatus.AddTalkingElement(chosen);
                 was_interjection = true;
             } else {
-                AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
-                questionTraverser++;
+                Question[] source = gameRef.questions;
 
-                if (gameRef.questions.Length <= questionTraverser) {
-                    questionTraverser = 0;
+                if(gameRef.game_sequence == Gameplay.GameSequence.Livingroom) {
+                    if(gameRef.livingroom_questions.Length > 0) {
+                        source = gameRef.livingroom_questions;
+                    }
                 }
+                if(gameRef.game_sequence == Gameplay.GameSequence.Balcony) {
+                    if(gameRef.balcony_questions.Length > 0) {
+                        source = gameRef.balcony_questions;
+                    }
+                }
+                if(gameRef.game_sequence == Gameplay.GameSequence.Bedroom) {
+                    if(gameRef.bedroom_questions.Length > 0) {
+                        source = gameRef.bedroom_questions;
+                    }
+                }
+
+                List<Question> possibilities = new List<Question>();
+                foreach(Question q in source) {
+                    if(AndroidStatus.happiness >= q.happiness_min && AndroidStatus.happiness <= q.happiness_max) {
+                        if(q != prev_question) {
+                            possibilities.Add(q);
+                        }
+                    }
+                }
+
+                if(possibilities.Count == 0) {
+                    possibilities.AddRange(gameRef.questions);
+                }
+
+                Question chosen = possibilities[UnityEngine.Random.Range(0,possibilities.Count)];
+                AndroidStatus.AddTalkingElement(chosen);
+                prev_question = chosen;
                 was_interjection = false;
             }
         }
