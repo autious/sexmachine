@@ -190,6 +190,7 @@ public class Gameplay : MonoBehaviour
                     currentTalkingElement = null;
                     SetDialogue(new Question.StringEmotion{ breadText = "A toast, to us!", emotionState = FaceSystem.Emotion.happy });
                     cheers_game.SetActive(true);
+                    game_mode = GameMode.Minigame;
                 }
             }
         }
