@@ -85,7 +85,7 @@ public class Gameplay : MonoBehaviour
     #region ReadLine Variables
     public float dialogueTimeInterval;
 
-    string fullLine, readLine;
+    string originalFullLine, fullLine, readLine;
 
     float dialogueTimeUp;
     #endregion
@@ -95,6 +95,7 @@ public class Gameplay : MonoBehaviour
 
     public Text happiness_debug = null;
     public TalkingElement starting_element;
+    public string myName;
 
     void Start()
     {
@@ -167,7 +168,7 @@ public class Gameplay : MonoBehaviour
         if (currentTalkingElement)
         {
             var next = currentTalkingElement.GetText();
-            if (next != null && next.breadText != fullLine)
+            if (next != null && next.breadText != originalFullLine)
                 SetDialogue(next);
 
         }
@@ -206,9 +207,18 @@ public class Gameplay : MonoBehaviour
         return readLine;
     }
 
+    public string Filter(string v) {
+        if(v != null) {
+            return v.Replace("$name", myName);
+        } else {
+            return "";
+        }
+    }
+
     public void SetDialogue(Question.StringEmotion inDialogue)
     {
-        fullLine = inDialogue.breadText;
+        originalFullLine = inDialogue.breadText;
+        fullLine = Filter(originalFullLine);
         readLine = "";
         FaceSystem.INSTANCE.SetEmotion(inDialogue.emotionState);
         CommunicationsManager.INSTANCE.Say(fullLine);
