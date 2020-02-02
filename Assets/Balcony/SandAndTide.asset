@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Passphrase
+  m_Name: SandAndTide
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   happiness_min: -1
   happiness_max: 1
-  correct_happiness_boost: 0.204
-  incorrect_happiness_loss: -0.175
+  correct_happiness_boost: 0.112
+  incorrect_happiness_loss: -0.123
   breadText:
-  - breadText: Hmmmm
+  - breadText: Remember when we met?
     emotionState: 0
-  - breadText: I'm getting worried you've been compromised
+  - breadText: How would write our names in the sand
     emotionState: 0
-  - breadText: I'm going to say our secret passphrase
+  - breadText: And watch the tide wash it away
     emotionState: 0
-  - breadText: You confirm if it's right or not
+  - breadText: How that would be our reminder
     emotionState: 0
-  - breadText: Belladonna of sadness
+  - breadText: That the machine that we call this world would forget about us
     emotionState: 0
+  - breadText: Anyways! Did you like the way I decorated the living room?
+    emotionState: 1
   expectedAnswer: 1
   wrongAnswer:
-  - breadText: $name...
-    emotionState: 0
-  - breadText: Who are you....
-    emotionState: 2
+  - breadText: $name you are a monster...
+    emotionState: 1
   rightAnswer:
-  - breadText: I knew you were the real $name
+  - breadText: Haha I do have a fantastic eye for good furniture
     emotionState: 0

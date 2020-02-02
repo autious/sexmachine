@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Name
+  m_Name: Meth
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   happiness_min: -1
-  happiness_max: 0.21
-  correct_happiness_boost: 0.192
-  incorrect_happiness_loss: -0.077
+  happiness_max: 1
+  correct_happiness_boost: 0.1
+  incorrect_happiness_loss: -0.1
   breadText:
-  - breadText: '$name
+  - breadText: 'I don''t want you to judge me anymore
 
 '
-    emotionState: 1
-  - breadText: That's a pretty ugly name lol right?
-    emotionState: 1
-  expectedAnswer: 1
+    emotionState: 0
+  - breadText: You have to accept my meth addiction!
+    emotionState: 0
+  expectedAnswer: 2
   wrongAnswer:
-  - breadText: Nah
-    emotionState: 0
-  - breadText: $name is a ugly name
-    emotionState: 0
+  - breadText: I can't believe you. You're fine with me taking meth
+    emotionState: 3
+  - breadText: How rotten
+    emotionState: 3
   rightAnswer:
-  - breadText: Haha it really is
-    emotionState: 1
-  - breadText: $name, sounds more like the name you give to a dog
-    emotionState: 1
+  - breadText: $name
+    emotionState: 3
+  - breadText: You do care about me
+    emotionState: 4
