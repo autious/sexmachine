@@ -121,6 +121,10 @@ public class Gameplay : MonoBehaviour
 
     public GameObject cheers_game;
     public int prev_cheer_attempts = 0;
+
+    public GameObject sex_game;
+
+    public GameObject fail_state;
     void Start()
     {
         fullLine = "";
