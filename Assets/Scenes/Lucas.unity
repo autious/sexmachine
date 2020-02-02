@@ -2758,6 +2758,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1549376165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1697991141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8941522049748624323, guid: 63f24971531e11f4a8215d09117ac103,
+    type: 3}
+  m_PrefabInstance: {fileID: 8941522049782820655}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1766397878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3097,6 +3103,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7741514786665766466, guid: e1d10c44a582f9941a106060ec2db85c,
     type: 3}
   m_PrefabInstance: {fileID: 265177209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2083593153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3843389003964336513, guid: f96566340d9310840ac51856dda2c8dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3843389004484346615}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1494219093856469247
 PrefabInstance:
@@ -3476,6 +3488,16 @@ PrefabInstance:
       propertyPath: cheers_game
       value: 
       objectReference: {fileID: 1593723487}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: sex_game
+      value: 
+      objectReference: {fileID: 1697991141}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: fail_state
+      value: 
+      objectReference: {fileID: 2083593153}
     - target: {fileID: 6704839164332263404, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
       propertyPath: audMusic
