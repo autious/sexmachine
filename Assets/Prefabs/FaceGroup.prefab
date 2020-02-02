@@ -1093,6 +1093,35 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  eventSerious:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2541323264513526107}
+        m_MethodName: SetEmotion
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -4042265529500330607, guid: d2254f8455549dc4788762644302607f,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2541323263577265771}
+        m_MethodName: SetEye
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8144797417278989230, guid: 836a9ec74b7afbb47ab04b0b40392187,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   faceFollow: {fileID: 1432262602}
   seriousMood: "What the fuck did you just fucking say about me, you little bitch?
     I\u2019ll have you know I graduated top of my class in the Navy Seals, and I\u2019ve
@@ -1279,7 +1308,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 83ec0ba7c7e81e147bdfe0a3899c469b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ab8cd61d68ad8b46bef8ce3d4c929f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
