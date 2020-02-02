@@ -120,7 +120,7 @@ public class Gameplay : MonoBehaviour
     public float timer = 0.0f;
 
     public GameObject cheers_game;
-
+    public int prev_cheer_attempts = 0;
     void Start()
     {
         fullLine = "";
@@ -131,24 +131,18 @@ public class Gameplay : MonoBehaviour
         AndroidStatus.AddTalkingElement(starting_element);
     }
     
-    void StartCheers() {
-        cheers_game.SetActive(true);
-        game_mode = GameMode.Minigame;
-    }
-
-    void EndCheers() {
-        cheers_game.SetActive(false);
-        game_mode = GameMode.Talking;
-    }
-
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F8)) {
-            StartCheers();
+            game_mode = GameMode.Minigame;
+            game_sequence = GameSequence.Balcony;
+            cheers_game.SetActive(true);
         }
         if(Input.GetKeyDown(KeyCode.F9)) {
-            EndCheers();
+            game_mode = GameMode.Talking;
+            game_sequence = GameSequence.Livingroom;
+            cheers_game.SetActive(false);
         }
         if(Input.GetKeyDown(KeyCode.F6)) {
             AndroidStatus.happiness -= 0.1f;
@@ -194,7 +188,8 @@ public class Gameplay : MonoBehaviour
 
                 if(game_sequence == GameSequence.Balcony) {
                     currentTalkingElement = null;
-                    StartCheers();
+                    SetDialogue(new Question.StringEmotion{ breadText = "A toast, to us!", emotionState = FaceSystem.Emotion.happy });
+                    cheers_game.SetActive(true);
                 }
             }
         }
@@ -219,7 +214,10 @@ public class Gameplay : MonoBehaviour
                 } else if(cg.lost) {
                     SetDialogue(new Question.StringEmotion{ breadText = "Why do you have to ruin every special moment we have?", emotionState = FaceSystem.Emotion.sad });
                     game_mode = GameMode.Failure;
-                } 
+                } else if(cg.attempts != prev_cheer_attempts) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "Can't you aim!?", emotionState = FaceSystem.Emotion.angry });
+                    prev_cheer_attempts = cg.attempts;
+                }
             }
         }
 
@@ -232,6 +230,7 @@ public class Gameplay : MonoBehaviour
                     AndroidStatus.happiness = 0.0f;
                 } else if(game_sequence == GameSequence.Balcony) {
                     change_scene.NextScene();
+                    cheers_game.SetActive(false);
                     game_sequence = GameSequence.Bedroom;
                     game_mode = GameMode.Talking;
                     AndroidStatus.happiness = 0.0f;
