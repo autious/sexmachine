@@ -15,7 +15,10 @@ public class CameraHead : MonoBehaviour
     void Awake()
     {
         ogRot = transform.localEulerAngles;
+
+        Screen.SetResolution(640,480, true);
     }
+
 
     // Update is called once per frame
     void Update()
