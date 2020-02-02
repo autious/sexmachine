@@ -44,7 +44,7 @@ public class SpeakSystem : MonoBehaviour
 
     public void DoSpeak() {
         speakTime = openTime;
-        mainTransform.position -= Vector3.up * 0.2f;
+        //mainTransform.position -= Vector3.up * 0.2f;
 
         if(!isSpeaking) {
 
