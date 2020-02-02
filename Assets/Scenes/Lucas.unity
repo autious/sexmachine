@@ -902,6 +902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 258450065}
+  - component: {fileID: 258450066}
   m_Layer: 0
   m_Name: Cheers
   m_TagString: Untagged
@@ -926,6 +927,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &258450066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258450064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34612af6084b2cb4e9d7866d43e8bfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glass_position: {fileID: 1125935314}
+  won: 0
+  lost: 0
 --- !u!1001 &265177209
 PrefabInstance:
   m_ObjectHideFlags: 0
