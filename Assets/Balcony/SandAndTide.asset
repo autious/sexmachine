@@ -20,15 +20,15 @@ MonoBehaviour:
   incorrect_happiness_loss: -0.123
   breadText:
   - breadText: Remember when we met?
-    emotionState: 0
+    emotionState: 5
   - breadText: How would write our names in the sand
-    emotionState: 0
+    emotionState: 5
   - breadText: And watch the tide wash it away
-    emotionState: 0
+    emotionState: 5
   - breadText: How that would be our reminder
-    emotionState: 0
+    emotionState: 5
   - breadText: That the machine that we call this world would forget about us
-    emotionState: 0
+    emotionState: 5
   - breadText: Anyways! Did you like the way I decorated the living room?
     emotionState: 1
   expectedAnswer: 1

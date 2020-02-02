@@ -10,29 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Meth
+  m_Name: Pineapple
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   happiness_min: -1
   happiness_max: 1
-  correct_happiness_boost: 0.158
-  incorrect_happiness_loss: -0.1
+  correct_happiness_boost: 0.209
+  incorrect_happiness_loss: -0.415
   breadText:
-  - breadText: 'I don''t want you to judge me anymore
-
-'
+  - breadText: Pineapple on pizza?
     emotionState: 0
-  - breadText: You have to accept my meth addiction!
-    emotionState: 0
-  expectedAnswer: 2
+  - breadText: Yay or Nay?
+    emotionState: 5
+  expectedAnswer: 1
   wrongAnswer:
-  - breadText: I can't believe you. You're fine with me taking meth
-    emotionState: 3
-  - breadText: How rotten
-    emotionState: 3
+  - breadText: WOOOOOOOW
+    emotionState: 2
+  - breadText: Shite taste $name
+    emotionState: 2
   rightAnswer:
-  - breadText: $name
-    emotionState: 3
-  - breadText: You do care about me
+  - breadText: I knew you were the real Mcoy
+    emotionState: 4
+  - breadText: $name, you truly have great taste
     emotionState: 4

@@ -10,29 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Meth
+  m_Name: Believe
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   happiness_min: -1
   happiness_max: 1
-  correct_happiness_boost: 0.158
-  incorrect_happiness_loss: -0.1
+  correct_happiness_boost: 0
+  incorrect_happiness_loss: 0
   breadText:
-  - breadText: 'I don''t want you to judge me anymore
-
-'
-    emotionState: 0
-  - breadText: You have to accept my meth addiction!
-    emotionState: 0
-  expectedAnswer: 2
+  - breadText: Do you believe in god?
+    emotionState: 5
+  expectedAnswer: 1
   wrongAnswer:
-  - breadText: I can't believe you. You're fine with me taking meth
-    emotionState: 3
-  - breadText: How rotten
-    emotionState: 3
+  - breadText: I see
+    emotionState: 5
   rightAnswer:
-  - breadText: $name
-    emotionState: 3
-  - breadText: You do care about me
-    emotionState: 4
+  - breadText: I see
+    emotionState: 5
