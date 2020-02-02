@@ -90,7 +90,7 @@ public class Question : TalkingElement
 
     public override bool GoNext()
     {
-        Debug.Log("GoNext() starting at " + questionState);
+        //Debug.Log("GoNext() starting at " + questionState);
 
         allDone = false;
         switch (questionState)
@@ -176,7 +176,7 @@ public class Question : TalkingElement
             questionState = 0;
         }
 
-        Debug.Log("Ended at " + questionState);
+        //Debug.Log("Ended at " + questionState);
         return allDone;
     }
 }

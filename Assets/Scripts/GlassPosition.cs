@@ -48,7 +48,6 @@ public class GlassPosition : MonoBehaviour
                     ogPos.z = 0;
 
                     transform.position = ogPos;
-                    attempt_count++;
                     input_attempt_timer = Time.time + 1.0f;
                 }
             } else {
@@ -56,6 +55,9 @@ public class GlassPosition : MonoBehaviour
                 theyGlass.enabled = true;
                 ogPos = oldog;
                 transform.position = old_position;
+                if(succeded == false) {
+                    attempt_count++;
+                }
             }
         }
     }
