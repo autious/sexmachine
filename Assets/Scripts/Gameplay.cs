@@ -76,6 +76,19 @@ public static class AndroidStatus
 
 public class Gameplay : MonoBehaviour
 {
+    public enum GameSequence {
+        Livingroom,
+        Balcony,
+        Bedroom,
+    }
+
+    public enum GameMode {
+        Talking,
+        Minigame,
+    }
+
+    public GameMode game_mode = GameMode.Talking;
+    public GameSequence game_sequence = GameSequence.Livingroom;
     public Text outputDia;
 
     public Question[] questions;
@@ -97,6 +110,8 @@ public class Gameplay : MonoBehaviour
     public TalkingElement starting_element;
     public string myName;
 
+    public GameObject cheers_game;
+
     void Start()
     {
         fullLine = "";
@@ -106,10 +121,27 @@ public class Gameplay : MonoBehaviour
         androidState.Enter();
         AndroidStatus.AddTalkingElement(starting_element);
     }
+    
+    void StartCheers() {
+        cheers_game.SetActive(true);
+        game_mode = GameMode.Minigame;
+    }
+
+    void EndCheers() {
+        cheers_game.SetActive(false);
+        game_mode = GameMode.Talking;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F8)) {
+            StartCheers();
+        }
+        if(Input.GetKeyDown(KeyCode.F9)) {
+            EndCheers();
+        }
+
         outputDia.text = readLine;
 
         readLine = ReadCurrentDialogue();
@@ -120,50 +152,51 @@ public class Gameplay : MonoBehaviour
             happiness_debug.text = "" + AndroidStatus.happiness;
         }
 
-
-
-        if (!currentTalkingElement || currentTalkingElement.GoNext())
-        {
-            //Debug.Log("HEREH: ");
-            if (currentTalkingElement is Question)
+        if(game_mode == GameMode.Talking) {
+            if (!currentTalkingElement || currentTalkingElement.GoNext())
             {
-
-                TalkingElement nextElement = null;
-
-                if(currentTalkingElement.correctlyAnswered)
+                //Debug.Log("HEREH: ");
+                if (currentTalkingElement is Question)
                 {
-                    if(currentTalkingElement.GetType() == typeof(Question)) {
-                        Question q = (Question)currentTalkingElement;
-                        AndroidStatus.happiness += q.correct_happiness_boost;
+
+                    TalkingElement nextElement = null;
+
+                    if(currentTalkingElement.correctlyAnswered)
+                    {
+                        if(currentTalkingElement.GetType() == typeof(Question)) {
+                            Question q = (Question)currentTalkingElement;
+                            AndroidStatus.happiness += q.correct_happiness_boost;
+                        }
+                        nextElement = currentTalkingElement.rightAnswerNode;
                     }
-                    nextElement = currentTalkingElement.rightAnswerNode;
-                }
-                else
-                {
-                    if(currentTalkingElement.GetType() == typeof(Question)) {
-                        Question q = (Question)currentTalkingElement;
-                        AndroidStatus.happiness += q.incorrect_happiness_loss;
+                    else
+                    {
+                        if(currentTalkingElement.GetType() == typeof(Question)) {
+                            Question q = (Question)currentTalkingElement;
+                            AndroidStatus.happiness += q.incorrect_happiness_loss;
+                        }
+                        nextElement = currentTalkingElement.wrongAnswerNode;
                     }
-                    nextElement = currentTalkingElement.wrongAnswerNode;
-                }
 
-                if(nextElement != null)
-                {
-                    SetTalkingElement(nextElement);
-                    Debug.Log("Not nUll");
+                    if(nextElement != null)
+                    {
+                        SetTalkingElement(nextElement);
+                        Debug.Log("Not nUll");
+                    }
+                    else
+                    {
+                        SetTalkingElement(AndroidStatus.GetTalkingElement());
+                        Debug.Log("Next Element");
+                    }
+
                 }
                 else
                 {
                     SetTalkingElement(AndroidStatus.GetTalkingElement());
-                    Debug.Log("Next Element");
                 }
-
-            }
-            else
-            {
-                SetTalkingElement(AndroidStatus.GetTalkingElement());
             }
         }
+
         androidState.Update();
         if (currentTalkingElement)
         {
@@ -181,13 +214,6 @@ public class Gameplay : MonoBehaviour
         } else {
             Debug.LogWarning("New talking element was null");
         }
-    }
-
-    public void ChangeState(AndroidState changeToState)
-    {
-        androidState.Exit();
-        androidState = changeToState;
-        androidState.Enter();
     }
 
     public string ReadCurrentDialogue()
