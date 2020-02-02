@@ -847,6 +847,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1d10c44a582f9941a106060ec2db85c, type: 3}
+--- !u!1 &284871496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4409283341788647029, guid: 3a71da72dcda3cf4c870dac0dde65d83,
+    type: 3}
+  m_PrefabInstance: {fileID: 4409283342545832979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &301161541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,6 +2648,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1d10c44a582f9941a106060ec2db85c, type: 3}
+--- !u!1 &1421771427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1494219094079643120, guid: 2176c2265ef9e654e8600d9480bf9c70,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494219093856469247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1458670692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7741514786665766478, guid: e1d10c44a582f9941a106060ec2db85c,
@@ -3425,11 +3437,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: _Game
       objectReference: {fileID: 0}
-    - target: {fileID: 6704839165430013599, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6704839165430013596, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3487,11 +3494,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
-      propertyPath: interjections.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
-        type: 3}
       propertyPath: outputDia
       value: 
       objectReference: {fileID: 8957214479873404414}
@@ -3522,10 +3524,14 @@ PrefabInstance:
       objectReference: {fileID: 2083593153}
     - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
-      propertyPath: interjections.Array.data[2]
+      propertyPath: joystick
       value: 
-      objectReference: {fileID: 11400000, guid: 59e845aee100d5c409872b536be81832,
-        type: 2}
+      objectReference: {fileID: 284871496}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 1421771427}
     - target: {fileID: 6704839164332263404, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
       propertyPath: audMusic
