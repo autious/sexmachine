@@ -1802,6 +1802,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 85a4ec878aa8e7a48bdaa68197651500, type: 2}
   - {fileID: 11400000, guid: 2d1a728cadc9a8c4eaeaf7d2ef3c112b, type: 2}
   - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
+  interjections:
+  - {fileID: 11400000, guid: 19287d3336b5d9244ab0e68324d3f120, type: 2}
+  - {fileID: 11400000, guid: 8cb3b827fd7b3cb40abf211acad23a87, type: 2}
   currentTalkingElement: {fileID: 0}
   dialogueTimeInterval: 0.03
   happiness_debug: {fileID: 1564751418}

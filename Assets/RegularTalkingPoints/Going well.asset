@@ -10,21 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c747643756712a4d8717cf31ba99303, type: 3}
-  m_Name: Introduction
+  m_Name: Going well
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
-  happiness_min: -1
+  happiness_min: 0.5
   happiness_max: 1
   Text:
-  - breadText: So... $name
-    emotionState: 0
-  - breadText: I think we need to talk.
-    emotionState: 0
-  - breadText: Do you have no shame in your body?
-    emotionState: 0
-  - breadText: The way that you've been treating me is not acceptable.
-    emotionState: 0
-  - breadText: I want you to be honest with me and answer my questions with yes or
-      no.
-    emotionState: 0
+  - breadText: Things really are going well, aren't they?
+    emotionState: 1
