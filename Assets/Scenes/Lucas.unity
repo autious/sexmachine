@@ -1804,7 +1804,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
   currentTalkingElement: {fileID: 0}
   dialogueTimeInterval: 0.03
-  happiness_debug: {fileID: 0}
+  happiness_debug: {fileID: 1564751418}
+  starting_element: {fileID: 11400000, guid: ba0eaef83bb403649bfc802a8ad3aac1, type: 2}
 --- !u!4 &734187892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7741514786665766466, guid: e1d10c44a582f9941a106060ec2db85c,
@@ -2991,6 +2992,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1d10c44a582f9941a106060ec2db85c, type: 3}
+--- !u!114 &1564751418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 717339946, guid: 34765dfb813c8b64998511ba4f5e3ad3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8957214479873404412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1570553791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7741514786665766466, guid: e1d10c44a582f9941a106060ec2db85c,
