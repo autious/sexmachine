@@ -87,6 +87,7 @@ public class Gameplay : MonoBehaviour
         Minigame,
         BackToTalking,
         Failure,
+        Leave,
     }
 
     public GameMode game_mode = GameMode.Talking;
@@ -188,6 +189,16 @@ public class Gameplay : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            if(game_mode == GameMode.Talking) { 
+                SetDialogue(new Question.StringEmotion{ breadText = "Are you leaving me?", emotionState = FaceSystem.Emotion.sad });
+                game_mode = GameMode.Leave;
+            } else {
+                Application.Quit();
+            }
+
+        }
+
         outputDia.text = readLine;
 
         readLine = ReadCurrentDialogue();
@@ -196,6 +207,15 @@ public class Gameplay : MonoBehaviour
 
         if (happiness_debug != null) {
             happiness_debug.text = "" + AndroidStatus.happiness;
+        }
+
+        if(game_mode == GameMode.Leave) {
+            PlayerAnswer pa = InputManager.yesAndNo.GetAnswer();
+            if(pa == PlayerAnswer.Yes) {
+                Application.Quit();
+            } else if(pa == PlayerAnswer.No){ 
+                game_mode = GameMode.Talking;
+            }
         }
 
         if(game_mode == GameMode.Talking) {
