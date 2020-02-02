@@ -174,7 +174,7 @@ MonoBehaviour:
   livingroom_questions:
   - {fileID: 11400000, guid: d503123a08303d04ab627d619df9c012, type: 2}
   - {fileID: 11400000, guid: 14205a4ac94611c48abb5df5ae4dac02, type: 2}
-  - {fileID: 11400000, guid: ba0eaef83bb403649bfc802a8ad3aac1, type: 2}
+  - {fileID: 11400000, guid: 9cfb4c98e5c1dfb41997c25e449c642d, type: 2}
   - {fileID: 11400000, guid: 7734476af84a1ea47a3e751c304f8f10, type: 2}
   - {fileID: 11400000, guid: a0b8cb1ce9e3e124c9e3c401b0a14188, type: 2}
   - {fileID: 11400000, guid: 6d548f3c5d744cc4796eab42da963a54, type: 2}
@@ -185,7 +185,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 871942edb891bae47917f6751abfb06e, type: 2}
   - {fileID: 11400000, guid: 2d1a728cadc9a8c4eaeaf7d2ef3c112b, type: 2}
   - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
-  - {fileID: 11400000, guid: 9cfb4c98e5c1dfb41997c25e449c642d, type: 2}
   balcony_questions:
   - {fileID: 11400000, guid: 2f5cb1f96b4f9de41a393675e503bdce, type: 2}
   - {fileID: 11400000, guid: 9ff664d98a89b0947a3fbd03a8f54289, type: 2}
