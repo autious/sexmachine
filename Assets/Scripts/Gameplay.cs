@@ -54,6 +54,9 @@ public static class AndroidStatus
 
     public static void AddTalkingElement(TalkingElement inElement)
     {
+        if(talkingPoints.Count > 0) {
+            talkingPoints.Clear();
+        }
         talkingPoints.Add(inElement);
     }
 
@@ -522,6 +525,8 @@ public class AndroidUpset : AndroidState
                 if(possibilities.Count == 0) {
                     possibilities.AddRange(gameRef.questions);
                 }
+
+                Debug.Log("Possible " + possibilities.Count);
 
                 Question chosen = possibilities[UnityEngine.Random.Range(0,possibilities.Count)];
                 AndroidStatus.AddTalkingElement(chosen);
