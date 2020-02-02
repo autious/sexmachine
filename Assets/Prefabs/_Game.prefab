@@ -194,7 +194,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ecf56945943ad4644bc7d077aac01176, type: 2}
   - {fileID: 11400000, guid: e2410db3b81060b419d359da828248ac, type: 2}
   - {fileID: 11400000, guid: 28f454ff0bba96f428f5b7624c605978, type: 2}
-  bedroom_questions: []
+  bedroom_questions:
+  - {fileID: 11400000, guid: 23e9716aff048a14082d4cd397d1a2bd, type: 2}
+  - {fileID: 11400000, guid: 18f8402283171404ab2c23b31412306f, type: 2}
   interjections:
   - {fileID: 11400000, guid: 19287d3336b5d9244ab0e68324d3f120, type: 2}
   - {fileID: 11400000, guid: 8cb3b827fd7b3cb40abf211acad23a87, type: 2}
