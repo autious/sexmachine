@@ -182,6 +182,41 @@ public class Gameplay : MonoBehaviour
         }
 
         if(game_mode == GameMode.Talking) {
+            if(AndroidStatus.happiness >= 1.0f) {
+                if(game_sequence == GameSequence.Livingroom) {
+                    currentTalkingElement = null;
+                    SetDialogue(new Question.StringEmotion{ breadText = "Let's head out to the balcony?", emotionState = FaceSystem.Emotion.happy });
+                    game_mode = GameMode.Minigame;
+                }
+
+                if(game_sequence == GameSequence.Balcony) {
+                    currentTalkingElement = null;
+                    StartCheers();
+                }
+            }
+        }
+
+        if(game_mode == GameMode.Minigame) {
+            if(game_sequence == GameSequence.Livingroom) {
+                PlayerAnswer pa = InputManager.yesAndNo.GetAnswer();
+
+                if(pa == PlayerAnswer.Yes) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "^^'", emotionState = FaceSystem.Emotion.blush });
+                    change_scene.NextScene();
+                    game_sequence = GameSequence.Balcony; 
+                    game_mode = GameMode.Talking;
+                    AndroidStatus.happiness = 0.0f;
+                } else if(pa == PlayerAnswer.No) {
+                    SetDialogue(new Question.StringEmotion{ breadText = ":(", emotionState = FaceSystem.Emotion.angry });
+                    AndroidStatus.happiness = -1.0f;
+                    game_sequence = GameSequence.Livingroom;
+                    game_mode = GameMode.Talking;
+                }
+            } else if(game_sequence == GameSequence.Balcony) {
+            }
+        }
+
+        if(game_mode == GameMode.Talking) {
             if (!currentTalkingElement || currentTalkingElement.GoNext())
             {
                 //Debug.Log("HEREH: ");
@@ -227,12 +262,13 @@ public class Gameplay : MonoBehaviour
         }
 
         androidState.Update();
-        if (currentTalkingElement)
-        {
-            var next = currentTalkingElement.GetText();
-            if (next != null && next.breadText != originalFullLine)
-                SetDialogue(next);
-
+        if(game_mode == GameMode.Talking) {
+            if (currentTalkingElement)
+            {
+                var next = currentTalkingElement.GetText();
+                if (next != null && next.breadText != originalFullLine)
+                    SetDialogue(next);
+            }
         }
     }
    
