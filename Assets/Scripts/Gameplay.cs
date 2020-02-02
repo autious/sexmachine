@@ -12,35 +12,37 @@ public class TalkingElement : ScriptableObject
     public TalkingElement wrongAnswerNode;
     [NonSerialized]
     public bool correctlyAnswered;
+
+    [Range(-1.0f, 1.0f)]
+    public float happiness_min = -1.0f;  
+    [Range(-1.0f, 1.0f)]
+    public float happiness_max = 1.0f;
+
+    public TalkingElement() {
+        happiness_min = -1.0f;
+        happiness_max = 1.0f; 
+    }
+
     public virtual Question.StringEmotion GetText()
     {
         return null;
     }
+
     public virtual bool GoNext()
     {
         return false;
     }
-}
 
-public class RegularTalkingPoint: TalkingElement
-{
-    Question.StringEmotion Text;
-
-    public RegularTalkingPoint(Question.StringEmotion textIn)
-    {
-        Text = textIn;
+    public virtual void Reset() {
     }
 
-    public override Question.StringEmotion GetText()
-    {
-        return Text;
-    }
-
-    public override bool GoNext()
-    {
-        return InputManager.PushToTalk();
+    public virtual void OnValidate() {
+        if(happiness_max < happiness_min) {
+            happiness_max = happiness_min;
+        }
     }
 }
+
 
 public static class AndroidStatus
 {
@@ -63,6 +65,10 @@ public static class AndroidStatus
         {
             returnelement = talkingPoints[0];
             talkingPoints.RemoveAt(0);
+        } 
+        else 
+        {
+            Debug.LogWarning("Ran out of talking points");
         }
         return returnelement;
     }
@@ -73,6 +79,7 @@ public class Gameplay : MonoBehaviour
     public Text outputDia;
 
     public Question[] questions;
+    public RegularTalkingPoint[] interjections;
 
     public TalkingElement currentTalkingElement;
     #region ReadLine Variables
@@ -87,6 +94,7 @@ public class Gameplay : MonoBehaviour
     // Start is called before the first frame update
 
     public Text happiness_debug = null;
+    public TalkingElement starting_element;
 
     void Start()
     {
@@ -95,6 +103,7 @@ public class Gameplay : MonoBehaviour
         //Input.
         androidState = new AndroidUpset(this);
         androidState.Enter();
+        AndroidStatus.AddTalkingElement(starting_element);
     }
 
     // Update is called once per frame
@@ -139,18 +148,20 @@ public class Gameplay : MonoBehaviour
 
                 if(nextElement != null)
                 {
-                    currentTalkingElement = nextElement;
+                    SetTalkingElement(nextElement);
                     Debug.Log("Not nUll");
                 }
                 else
                 {
-                    currentTalkingElement = AndroidStatus.GetTalkingElement();
+                    SetTalkingElement(AndroidStatus.GetTalkingElement());
                     Debug.Log("Next Element");
                 }
 
             }
             else
-                currentTalkingElement = AndroidStatus.GetTalkingElement();
+            {
+                SetTalkingElement(AndroidStatus.GetTalkingElement());
+            }
         }
         androidState.Update();
         if (currentTalkingElement)
@@ -160,8 +171,15 @@ public class Gameplay : MonoBehaviour
                 SetDialogue(next);
 
         }
-
-
+    }
+   
+    public void SetTalkingElement(TalkingElement te) {
+        currentTalkingElement = te;
+        if(te != null) {
+            currentTalkingElement.Reset();
+        } else {
+            Debug.LogWarning("New talking element was null");
+        }
     }
 
     public void ChangeState(AndroidState changeToState)
@@ -225,7 +243,7 @@ public class AndroidState
 public class AndroidUpset : AndroidState
 {
     public int questionTraverser;
-    
+
     public AndroidUpset(Gameplay inRef):base(inRef)
     {
 
@@ -235,6 +253,7 @@ public class AndroidUpset : AndroidState
     {
         questionTraverser = 0;
 
+        /*
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion{breadText = "So...", emotionState = FaceSystem.Emotion.idle }));
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "I think we need to talk", emotionState = FaceSystem.Emotion.idle }));
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "Do you have no shame in your body", emotionState = FaceSystem.Emotion.idle }));
@@ -256,22 +275,41 @@ public class AndroidUpset : AndroidState
         List<Question.StringEmotion> righttext = new List<Question.StringEmotion>();
         tempQuestion = new Question(questionBreadText, PlayerAnswer.Yes,wrongText,righttext);
         tempQuestion.wrongAnswerNode = tempQuestion;
-
         AndroidStatus.AddTalkingElement(tempQuestion);
+        */
     }
 
+    private bool was_interjection = false;
     public override void Update()
     {
-        if(AndroidStatus.happiness < 1.0f)
+        if (gameRef.currentTalkingElement == null)
         {
-            if (gameRef.currentTalkingElement == null)
-            {
+            //Add interjection?
+            if(was_interjection == false && UnityEngine.Random.Range(0,1.0f) > 0.5f) {
+                List<RegularTalkingPoint> possibilities = new List<RegularTalkingPoint>();
+
+                foreach(RegularTalkingPoint rtp in gameRef.interjections) {
+                    if(AndroidStatus.happiness > rtp.happiness_min && AndroidStatus.happiness < rtp.happiness_max) {
+                        possibilities.Add(rtp);
+                    }
+                }
+
+                if(possibilities.Count == 0) {
+                    possibilities.AddRange(gameRef.interjections);
+                }
+
+                RegularTalkingPoint chosen = possibilities[UnityEngine.Random.Range(0,possibilities.Count)];
+
+                AndroidStatus.AddTalkingElement(chosen);
+                was_interjection = true;
+            } else {
                 AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
                 questionTraverser++;
 
                 if (gameRef.questions.Length <= questionTraverser) {
                     questionTraverser = 0;
                 }
+                was_interjection = false;
             }
         }
     }
