@@ -100,10 +100,17 @@ public class Gameplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(happiness_debug != null) {
+        outputDia.text = readLine;
+
+        readLine = ReadCurrentDialogue();
+        if (fullLine != readLine)
+            return;
+
+        if (happiness_debug != null) {
             happiness_debug.text = "" + AndroidStatus.happiness;
         }
-        outputDia.text = readLine;
+
+
 
         if (!currentTalkingElement || currentTalkingElement.GoNext())
         {
@@ -154,7 +161,6 @@ public class Gameplay : MonoBehaviour
 
         }
 
-        readLine = ReadCurrentDialogue();
 
     }
 
