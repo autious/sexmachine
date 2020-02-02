@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
+  m_Name: Kinky
+  m_EditorClassIdentifier: 
+  rightAnswerNode: {fileID: 0}
+  wrongAnswerNode: {fileID: 0}
+  happiness_min: -1
+  happiness_max: 1
+  correct_happiness_boost: 0.207
+  incorrect_happiness_loss: -0.138
+  breadText:
+  - breadText: Baby!
+    emotionState: 2
+  - breadText: Let me sit on your face!
+    emotionState: 2
+  expectedAnswer: 2
+  wrongAnswer:
+  - breadText: OK!
+    emotionState: 0
+  - breadText: LEts do this!
+    emotionState: 4
+  - breadText: '*Jumps up and crushes your face*'
+    emotionState: 2
+  - breadText: OOOPS, not a good idea!
+    emotionState: 3
+  rightAnswer:
+  - breadText: Ahh, good idea!
+    emotionState: 4
+  - breadText: I would just crush your face with my massive weight!
+    emotionState: 4
