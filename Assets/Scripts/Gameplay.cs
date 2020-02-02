@@ -106,6 +106,7 @@ public class Gameplay : MonoBehaviour
     public AndroidState androidState;
     // Start is called before the first frame update
 
+    public Text mood_debug = null;
     public Text happiness_debug = null;
     public TalkingElement starting_element;
     public string myName;
@@ -146,6 +147,23 @@ public class Gameplay : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.F7)) {
             AndroidStatus.happiness += 0.1f;
+        }
+        if(Input.GetKeyDown(KeyCode.F5)) {
+            if(mood_debug != null) {
+                mood_debug.gameObject.SetActive(true);
+            }
+            if(happiness_debug != null) {
+                happiness_debug.gameObject.SetActive(true);
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.F4)) {
+            if(mood_debug != null) {
+                mood_debug.gameObject.SetActive(false);
+            }
+
+            if(happiness_debug != null) {
+                happiness_debug.gameObject.SetActive(false);
+            }
         }
 
         outputDia.text = readLine;
