@@ -85,6 +85,8 @@ public class Gameplay : MonoBehaviour
     public enum GameMode {
         Talking,
         Minigame,
+        BackToTalking,
+        Failure,
     }
 
     public GameMode game_mode = GameMode.Talking;
@@ -115,6 +117,7 @@ public class Gameplay : MonoBehaviour
     public Text happiness_debug = null;
     public TalkingElement starting_element;
     public string myName;
+    public float timer = 0.0f;
 
     public GameObject cheers_game;
 
@@ -182,6 +185,61 @@ public class Gameplay : MonoBehaviour
         }
 
         if(game_mode == GameMode.Talking) {
+            if(AndroidStatus.happiness >= 1.0f) {
+                if(game_sequence == GameSequence.Livingroom) {
+                    currentTalkingElement = null;
+                    SetDialogue(new Question.StringEmotion{ breadText = "Let's head out to the balcony?", emotionState = FaceSystem.Emotion.happy });
+                    game_mode = GameMode.Minigame;
+                }
+
+                if(game_sequence == GameSequence.Balcony) {
+                    currentTalkingElement = null;
+                    StartCheers();
+                }
+            }
+        }
+
+        if(game_mode == GameMode.Minigame) {
+            if(game_sequence == GameSequence.Livingroom) {
+                PlayerAnswer pa = InputManager.yesAndNo.GetAnswer();
+
+                if(pa == PlayerAnswer.Yes) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "^^'", emotionState = FaceSystem.Emotion.blush });
+                    game_mode = GameMode.BackToTalking;
+                } else if(pa == PlayerAnswer.No) {
+                    SetDialogue(new Question.StringEmotion{ breadText = ":(", emotionState = FaceSystem.Emotion.angry });
+                    game_mode = GameMode.Failure;
+                } 
+            } else if(game_sequence == GameSequence.Balcony) {
+                CheersGame cg = cheers_game.GetComponent<CheersGame>();
+
+                if(cg.won) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "Let's head out to the bedroom...", emotionState = FaceSystem.Emotion.blush });
+                    game_mode = GameMode.BackToTalking;
+                } else if(cg.lost) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "Why do you have to ruin every special moment we have?", emotionState = FaceSystem.Emotion.sad });
+                    game_mode = GameMode.Failure;
+                } 
+            }
+        }
+
+        if(game_mode == GameMode.BackToTalking) {
+            if(InputManager.PushToTalk()) {
+                if(game_sequence == GameSequence.Livingroom) {
+                    change_scene.NextScene();
+                    game_sequence = GameSequence.Balcony; 
+                    game_mode = GameMode.Talking;
+                    AndroidStatus.happiness = 0.0f;
+                } else if(game_sequence == GameSequence.Balcony) {
+                    change_scene.NextScene();
+                    game_sequence = GameSequence.Bedroom;
+                    game_mode = GameMode.Talking;
+                    AndroidStatus.happiness = 0.0f;
+                }
+            }
+        }
+
+        if(game_mode == GameMode.Talking) {
             if (!currentTalkingElement || currentTalkingElement.GoNext())
             {
                 //Debug.Log("HEREH: ");
@@ -227,12 +285,13 @@ public class Gameplay : MonoBehaviour
         }
 
         androidState.Update();
-        if (currentTalkingElement)
-        {
-            var next = currentTalkingElement.GetText();
-            if (next != null && next.breadText != originalFullLine)
-                SetDialogue(next);
-
+        if(game_mode == GameMode.Talking) {
+            if (currentTalkingElement)
+            {
+                var next = currentTalkingElement.GetText();
+                if (next != null && next.breadText != originalFullLine)
+                    SetDialogue(next);
+            }
         }
     }
    
