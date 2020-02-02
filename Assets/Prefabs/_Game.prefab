@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6704839165430013596
 Transform:
   m_ObjectHideFlags: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   interjections:
   - {fileID: 11400000, guid: 19287d3336b5d9244ab0e68324d3f120, type: 2}
   - {fileID: 11400000, guid: 8cb3b827fd7b3cb40abf211acad23a87, type: 2}
+  - {fileID: 11400000, guid: 59e845aee100d5c409872b536be81832, type: 2}
   currentTalkingElement: {fileID: 0}
   dialogueTimeInterval: 0.03
   change_scene: {fileID: 6704839164049737412}
@@ -187,6 +188,8 @@ MonoBehaviour:
   timer: 0
   cheers_game: {fileID: 0}
   prev_cheer_attempts: 0
+  sex_game: {fileID: 0}
+  fail_state: {fileID: 0}
 --- !u!1001 &9099742644666585479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,11 +256,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2541323263577265771, guid: 6569428af96bd8941a62f5f3fc4953f1,
-        type: 3}
-      propertyPath: audMusic
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6569428af96bd8941a62f5f3fc4953f1, type: 3}

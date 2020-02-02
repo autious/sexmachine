@@ -3487,6 +3487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
+      propertyPath: interjections.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
       propertyPath: outputDia
       value: 
       objectReference: {fileID: 8957214479873404414}
@@ -3515,6 +3520,12 @@ PrefabInstance:
       propertyPath: fail_state
       value: 
       objectReference: {fileID: 2083593153}
+    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
+        type: 3}
+      propertyPath: interjections.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 59e845aee100d5c409872b536be81832,
+        type: 2}
     - target: {fileID: 6704839164332263404, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
       propertyPath: audMusic
