@@ -79,6 +79,7 @@ public class Gameplay : MonoBehaviour
     public Text outputDia;
 
     public Question[] questions;
+    public RegularTalkingPoint[] interjections;
 
     public TalkingElement currentTalkingElement;
     #region ReadLine Variables
@@ -278,15 +279,37 @@ public class AndroidUpset : AndroidState
         */
     }
 
+    private bool was_interjection = false;
     public override void Update()
     {
         if (gameRef.currentTalkingElement == null)
         {
-            AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
-            questionTraverser++;
+            //Add interjection?
+            if(was_interjection == false && UnityEngine.Random.Range(0,1.0f) > 0.5f) {
+                List<RegularTalkingPoint> possibilities = new List<RegularTalkingPoint>();
 
-            if (gameRef.questions.Length <= questionTraverser) {
-                questionTraverser = 0;
+                foreach(RegularTalkingPoint rtp in gameRef.interjections) {
+                    if(AndroidStatus.happiness > rtp.happiness_min && AndroidStatus.happiness < rtp.happiness_max) {
+                        possibilities.Add(rtp);
+                    }
+                }
+
+                if(possibilities.Count == 0) {
+                    possibilities.AddRange(gameRef.interjections);
+                }
+
+                RegularTalkingPoint chosen = possibilities[UnityEngine.Random.Range(0,possibilities.Count)];
+
+                AndroidStatus.AddTalkingElement(chosen);
+                was_interjection = true;
+            } else {
+                AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
+                questionTraverser++;
+
+                if (gameRef.questions.Length <= questionTraverser) {
+                    questionTraverser = 0;
+                }
+                was_interjection = false;
             }
         }
     }
