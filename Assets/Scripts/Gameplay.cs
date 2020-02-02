@@ -93,6 +93,7 @@ public class Gameplay : MonoBehaviour
     // Start is called before the first frame update
 
     public Text happiness_debug = null;
+    public TalkingElement starting_element;
 
     void Start()
     {
@@ -101,6 +102,7 @@ public class Gameplay : MonoBehaviour
         //Input.
         androidState = new AndroidUpset(this);
         androidState.Enter();
+        AndroidStatus.AddTalkingElement(starting_element);
     }
 
     // Update is called once per frame
@@ -168,8 +170,6 @@ public class Gameplay : MonoBehaviour
                 SetDialogue(next);
 
         }
-
-
     }
    
     public void SetTalkingElement(TalkingElement te) {
@@ -242,7 +242,7 @@ public class AndroidState
 public class AndroidUpset : AndroidState
 {
     public int questionTraverser;
-    
+
     public AndroidUpset(Gameplay inRef):base(inRef)
     {
 
@@ -252,6 +252,7 @@ public class AndroidUpset : AndroidState
     {
         questionTraverser = 0;
 
+        /*
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion{breadText = "So...", emotionState = FaceSystem.Emotion.idle }));
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "I think we need to talk", emotionState = FaceSystem.Emotion.idle }));
         AndroidStatus.AddTalkingElement(new RegularTalkingPoint( new Question.StringEmotion { breadText = "Do you have no shame in your body", emotionState = FaceSystem.Emotion.idle }));
@@ -273,8 +274,8 @@ public class AndroidUpset : AndroidState
         List<Question.StringEmotion> righttext = new List<Question.StringEmotion>();
         tempQuestion = new Question(questionBreadText, PlayerAnswer.Yes,wrongText,righttext);
         tempQuestion.wrongAnswerNode = tempQuestion;
-
         AndroidStatus.AddTalkingElement(tempQuestion);
+        */
     }
 
     public override void Update()

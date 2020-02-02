@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
+  m_Name: Intro
+  m_EditorClassIdentifier: 
+  rightAnswerNode: {fileID: 0}
+  wrongAnswerNode: {fileID: 11400000}
+  happiness_min: -1
+  happiness_max: 1
+  correct_happiness_boost: 0.1
+  incorrect_happiness_loss: -0.1
+  breadText:
+  - breadText: So... $name.
+    emotionState: 0
+  - breadText: I think we need to talk.
+    emotionState: 0
+  - breadText: Do you have no shame in your body?
+    emotionState: 0
+  - breadText: The way that you've been treating me is not acceptable.
+    emotionState: 0
+  - breadText: I want you to be honest with me and answer my questions with yes or
+      no.
+    emotionState: 0
+  - breadText: Wiggle my joystick back and forward for yes.
+    emotionState: 0
+  - breadText: And side to side for no.
+    emotionState: 0
+  - breadText: Do you understand?
+    emotionState: 0
+  expectedAnswer: 1
+  wrongAnswer:
+  - breadText: God damn you.
+    emotionState: 2
+  rightAnswer:
+  - breadText: Good!
+    emotionState: 1
