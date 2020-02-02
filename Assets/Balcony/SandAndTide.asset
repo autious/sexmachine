@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
+  m_Name: SandAndTide
+  m_EditorClassIdentifier: 
+  rightAnswerNode: {fileID: 0}
+  wrongAnswerNode: {fileID: 0}
+  happiness_min: -1
+  happiness_max: 1
+  correct_happiness_boost: 0.112
+  incorrect_happiness_loss: -0.123
+  breadText:
+  - breadText: Remember when we met?
+    emotionState: 0
+  - breadText: How would write our names in the sand
+    emotionState: 0
+  - breadText: And watch the tide wash it away
+    emotionState: 0
+  - breadText: How that would be our reminder
+    emotionState: 0
+  - breadText: That the machine that we call this world would forget about us
+    emotionState: 0
+  - breadText: Anyways! Did you like the way I decorated the living room?
+    emotionState: 1
+  expectedAnswer: 1
+  wrongAnswer:
+  - breadText: $name you are a monster...
+    emotionState: 1
+  rightAnswer:
+  - breadText: Haha I do have a fantastic eye for good furniture
+    emotionState: 0
