@@ -1931,14 +1931,10 @@ MonoBehaviour:
   game_sequence: 0
   outputDia: {fileID: 8957214479873404414}
   questions:
-  - {fileID: 11400000, guid: 7734476af84a1ea47a3e751c304f8f10, type: 2}
-  - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
-  - {fileID: 11400000, guid: a0b8cb1ce9e3e124c9e3c401b0a14188, type: 2}
-  - {fileID: 11400000, guid: 6d548f3c5d744cc4796eab42da963a54, type: 2}
-  - {fileID: 11400000, guid: cae356f949d96dc45b635cb3948c384d, type: 2}
-  - {fileID: 11400000, guid: 85a4ec878aa8e7a48bdaa68197651500, type: 2}
-  - {fileID: 11400000, guid: 2d1a728cadc9a8c4eaeaf7d2ef3c112b, type: 2}
-  - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
+  - {fileID: 11400000, guid: 9ff664d98a89b0947a3fbd03a8f54289, type: 2}
+  - {fileID: 11400000, guid: 338c29b502670014da2a77a4d71da540, type: 2}
+  - {fileID: 11400000, guid: ecf56945943ad4644bc7d077aac01176, type: 2}
+  - {fileID: 11400000, guid: 28f454ff0bba96f428f5b7624c605978, type: 2}
   livingroom_questions: []
   balcony_questions: []
   bedroom_questions: []

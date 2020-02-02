@@ -10,29 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f05d3f567d3b9134ba55d3ad53e8d068, type: 3}
-  m_Name: Name
+  m_Name: Diabetes
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
   happiness_min: -1
-  happiness_max: 0.21
-  correct_happiness_boost: 0.192
-  incorrect_happiness_loss: -0.077
+  happiness_max: 1
+  correct_happiness_boost: 0.1
+  incorrect_happiness_loss: -0.244
   breadText:
-  - breadText: '$name
-
-'
-    emotionState: 1
-  - breadText: That's a pretty ugly name lol right?
-    emotionState: 1
+  - breadText: AHHH
+    emotionState: 2
+  - breadText: '$name! I can feel my diabetes acting up! '
+    emotionState: 2
+  - breadText: Quick get me a tortilla chicken sandwich from the kitchen!
+    emotionState: 2
   expectedAnswer: 1
   wrongAnswer:
-  - breadText: Nah
-    emotionState: 0
-  - breadText: $name is a ugly name
-    emotionState: 0
+  - breadText: $name how could you do this
+    emotionState: 3
   rightAnswer:
-  - breadText: Haha it really is
-    emotionState: 1
-  - breadText: $name, sounds more like the name you give to a dog
+  - breadText: '*Crunch Crunch crunch* '
+    emotionState: 2
+  - breadText: '*Gulp* '
+    emotionState: 0
+  - breadText: Aaaah
+    emotionState: 0
+  - breadText: Just what the doctor ordered. Thank you $name
     emotionState: 1
