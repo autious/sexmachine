@@ -34,7 +34,12 @@ public class Question : TalkingElement
     public Question() {
         correct_happiness_boost = 0.1f;
         incorrect_happiness_loss = -0.1f;
+        questionState = 0;
+        currentElement = 0;
+        happiness_min = -1.0f;
+        happiness_max = 1.0f;
     }
+
 
     public Question(List<StringEmotion> inBreadText, PlayerAnswer inExpectedAnswer, List<StringEmotion> inWrongAnswer, List<StringEmotion> inRightAnswer)
     {
@@ -45,6 +50,10 @@ public class Question : TalkingElement
         allDone = false;
         questionState = 0;
         currentElement = 0;
+        correct_happiness_boost = 0.1f;
+        incorrect_happiness_loss = -0.1f;
+        happiness_min = -1.0f;
+        happiness_max = 1.0f;
     }
 
     public override StringEmotion GetText()
@@ -72,9 +81,17 @@ public class Question : TalkingElement
 
         return toRead;
     }
+    
+    public override void Reset() {
+        allDone = false;
+        questionState = 0;
+        currentElement = 0;
+    }
 
     public override bool GoNext()
     {
+        Debug.Log("GoNext() starting at " + questionState);
+
         allDone = false;
         switch (questionState)
         {
@@ -95,6 +112,10 @@ public class Question : TalkingElement
                 {
                     currentElement = breadText.Count - 1;
                     questionState = 1;
+                }
+
+                if(currentElement < 0) {
+                    allDone = true;
                 }
                 break;
             case 1:
@@ -155,6 +176,7 @@ public class Question : TalkingElement
             questionState = 0;
         }
 
+        Debug.Log("Ended at " + questionState);
         return allDone;
     }
 }
