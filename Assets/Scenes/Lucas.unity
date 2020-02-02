@@ -891,7 +891,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258450064
 GameObject:
@@ -920,12 +920,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 612545170}
-  - {fileID: 1125935310}
-  - {fileID: 1331210819}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &258450066
 MonoBehaviour:
@@ -939,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34612af6084b2cb4e9d7866d43e8bfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glass_position: {fileID: 1125935314}
+  glass_position: {fileID: 0}
   won: 0
   lost: 0
 --- !u!1001 &265177209
@@ -1832,12 +1829,11 @@ MonoBehaviour:
   game_mode: 0
   game_sequence: 0
   outputDia: {fileID: 8957214479873404414}
-  questions:
-  - {fileID: 11400000, guid: 9ff664d98a89b0947a3fbd03a8f54289, type: 2}
-  - {fileID: 11400000, guid: 338c29b502670014da2a77a4d71da540, type: 2}
-  - {fileID: 11400000, guid: ecf56945943ad4644bc7d077aac01176, type: 2}
+  questions: []
+  livingroom_questions:
+  - {fileID: 11400000, guid: e2410db3b81060b419d359da828248ac, type: 2}
+  - {fileID: 11400000, guid: 2f5cb1f96b4f9de41a393675e503bdce, type: 2}
   - {fileID: 11400000, guid: 28f454ff0bba96f428f5b7624c605978, type: 2}
-  livingroom_questions: []
   balcony_questions: []
   bedroom_questions: []
   interjections:
@@ -1850,6 +1846,7 @@ MonoBehaviour:
   happiness_debug: {fileID: 1564751418}
   starting_element: {fileID: 11400000, guid: ba0eaef83bb403649bfc802a8ad3aac1, type: 2}
   myName: 
+  timer: 0
   cheers_game: {fileID: 258450064}
 --- !u!4 &734187892 stripped
 Transform:
@@ -3496,7 +3493,7 @@ PrefabInstance:
     - target: {fileID: 1494219094079643116, guid: 2176c2265ef9e654e8600d9480bf9c70,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1494219094079643116, guid: 2176c2265ef9e654e8600d9480bf9c70,
         type: 3}
@@ -3713,7 +3710,7 @@ PrefabInstance:
     - target: {fileID: 3843389003964336512, guid: f96566340d9310840ac51856dda2c8dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3843389003964336512, guid: f96566340d9310840ac51856dda2c8dc,
         type: 3}
@@ -3930,7 +3927,7 @@ PrefabInstance:
     - target: {fileID: 8941522049748624350, guid: 63f24971531e11f4a8215d09117ac103,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8941522049748624350, guid: 63f24971531e11f4a8215d09117ac103,
         type: 3}

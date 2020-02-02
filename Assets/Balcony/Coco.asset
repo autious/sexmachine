@@ -16,8 +16,8 @@ MonoBehaviour:
   wrongAnswerNode: {fileID: 0}
   happiness_min: -1
   happiness_max: 1
-  correct_happiness_boost: 0.1
-  incorrect_happiness_loss: -0.1
+  correct_happiness_boost: 0.15
+  incorrect_happiness_loss: -0.105
   breadText:
   - breadText: I'm in love with the coco!
     emotionState: 1
