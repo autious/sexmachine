@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightAnswerNode: {fileID: 0}
   wrongAnswerNode: {fileID: 0}
-  correctlyAnswered: 0
+  happiness_min: -1
+  happiness_max: 1
+  correct_happiness_boost: 0.1
+  incorrect_happiness_loss: -0.1
   breadText: []
   expectedAnswer: 0
   wrongAnswer: []
