@@ -141,6 +141,12 @@ public class Gameplay : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F9)) {
             EndCheers();
         }
+        if(Input.GetKeyDown(KeyCode.F6)) {
+            AndroidStatus.happiness -= 0.1f;
+        }
+        if(Input.GetKeyDown(KeyCode.F7)) {
+            AndroidStatus.happiness += 0.1f;
+        }
 
         outputDia.text = readLine;
 
