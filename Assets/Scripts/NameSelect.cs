@@ -34,11 +34,12 @@ public class NameSelect : MonoBehaviour
 
 
     void StartGame() {
-        CommunicationsManager.INSTANCE.Say(myName);
+        //CommunicationsManager.INSTANCE.Say(myName);
 
         cameraHead.amount = defaultHeadAmount;
         activateFace.Invoke();
         gameObject.SetActive(false);
+        GameObject.FindObjectOfType<Gameplay>().myName = myName;
     }
 
     private void OnTriggerEnter(Collider other) {

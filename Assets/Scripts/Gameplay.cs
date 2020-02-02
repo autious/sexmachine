@@ -76,16 +76,36 @@ public static class AndroidStatus
 
 public class Gameplay : MonoBehaviour
 {
-    public Text outputDia;
+    public enum GameSequence {
+        Livingroom,
+        Balcony,
+        Bedroom,
+    }
 
+    public enum GameMode {
+        Talking,
+        Minigame,
+        BackToTalking,
+        Failure,
+    }
+
+    public GameMode game_mode = GameMode.Talking;
+    public GameSequence game_sequence = GameSequence.Livingroom;
+    public Text outputDia;
+    
     public Question[] questions;
+    public Question[] livingroom_questions;
+    public Question[] balcony_questions;
+    public Question[] bedroom_questions;
+
     public RegularTalkingPoint[] interjections;
 
     public TalkingElement currentTalkingElement;
     #region ReadLine Variables
     public float dialogueTimeInterval;
+    public ChangeScene change_scene;
 
-    string fullLine, readLine;
+    string originalFullLine, fullLine, readLine;
 
     float dialogueTimeUp;
     #endregion
@@ -93,8 +113,13 @@ public class Gameplay : MonoBehaviour
     public AndroidState androidState;
     // Start is called before the first frame update
 
+    public Text mood_debug = null;
     public Text happiness_debug = null;
     public TalkingElement starting_element;
+    public string myName;
+    public float timer = 0.0f;
+
+    public GameObject cheers_game;
 
     void Start()
     {
@@ -105,10 +130,50 @@ public class Gameplay : MonoBehaviour
         androidState.Enter();
         AndroidStatus.AddTalkingElement(starting_element);
     }
+    
+    void StartCheers() {
+        cheers_game.SetActive(true);
+        game_mode = GameMode.Minigame;
+    }
+
+    void EndCheers() {
+        cheers_game.SetActive(false);
+        game_mode = GameMode.Talking;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F8)) {
+            StartCheers();
+        }
+        if(Input.GetKeyDown(KeyCode.F9)) {
+            EndCheers();
+        }
+        if(Input.GetKeyDown(KeyCode.F6)) {
+            AndroidStatus.happiness -= 0.1f;
+        }
+        if(Input.GetKeyDown(KeyCode.F7)) {
+            AndroidStatus.happiness += 0.1f;
+        }
+        if(Input.GetKeyDown(KeyCode.F5)) {
+            if(mood_debug != null) {
+                mood_debug.gameObject.SetActive(true);
+            }
+            if(happiness_debug != null) {
+                happiness_debug.gameObject.SetActive(true);
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.F4)) {
+            if(mood_debug != null) {
+                mood_debug.gameObject.SetActive(false);
+            }
+
+            if(happiness_debug != null) {
+                happiness_debug.gameObject.SetActive(false);
+            }
+        }
+
         outputDia.text = readLine;
 
         readLine = ReadCurrentDialogue();
@@ -119,57 +184,114 @@ public class Gameplay : MonoBehaviour
             happiness_debug.text = "" + AndroidStatus.happiness;
         }
 
+        if(game_mode == GameMode.Talking) {
+            if(AndroidStatus.happiness >= 1.0f) {
+                if(game_sequence == GameSequence.Livingroom) {
+                    currentTalkingElement = null;
+                    SetDialogue(new Question.StringEmotion{ breadText = "Let's head out to the balcony?", emotionState = FaceSystem.Emotion.happy });
+                    game_mode = GameMode.Minigame;
+                }
 
+                if(game_sequence == GameSequence.Balcony) {
+                    currentTalkingElement = null;
+                    StartCheers();
+                }
+            }
+        }
 
-        if (!currentTalkingElement || currentTalkingElement.GoNext())
-        {
-            //Debug.Log("HEREH: ");
-            if (currentTalkingElement is Question)
+        if(game_mode == GameMode.Minigame) {
+            if(game_sequence == GameSequence.Livingroom) {
+                PlayerAnswer pa = InputManager.yesAndNo.GetAnswer();
+
+                if(pa == PlayerAnswer.Yes) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "^^'", emotionState = FaceSystem.Emotion.blush });
+                    game_mode = GameMode.BackToTalking;
+                } else if(pa == PlayerAnswer.No) {
+                    SetDialogue(new Question.StringEmotion{ breadText = ":(", emotionState = FaceSystem.Emotion.angry });
+                    game_mode = GameMode.Failure;
+                } 
+            } else if(game_sequence == GameSequence.Balcony) {
+                CheersGame cg = cheers_game.GetComponent<CheersGame>();
+
+                if(cg.won) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "Let's head out to the bedroom...", emotionState = FaceSystem.Emotion.blush });
+                    game_mode = GameMode.BackToTalking;
+                } else if(cg.lost) {
+                    SetDialogue(new Question.StringEmotion{ breadText = "Why do you have to ruin every special moment we have?", emotionState = FaceSystem.Emotion.sad });
+                    game_mode = GameMode.Failure;
+                } 
+            }
+        }
+
+        if(game_mode == GameMode.BackToTalking) {
+            if(InputManager.PushToTalk()) {
+                if(game_sequence == GameSequence.Livingroom) {
+                    change_scene.NextScene();
+                    game_sequence = GameSequence.Balcony; 
+                    game_mode = GameMode.Talking;
+                    AndroidStatus.happiness = 0.0f;
+                } else if(game_sequence == GameSequence.Balcony) {
+                    change_scene.NextScene();
+                    game_sequence = GameSequence.Bedroom;
+                    game_mode = GameMode.Talking;
+                    AndroidStatus.happiness = 0.0f;
+                }
+            }
+        }
+
+        if(game_mode == GameMode.Talking) {
+            if (!currentTalkingElement || currentTalkingElement.GoNext())
             {
-
-                TalkingElement nextElement = null;
-
-                if(currentTalkingElement.correctlyAnswered)
+                //Debug.Log("HEREH: ");
+                if (currentTalkingElement is Question)
                 {
-                    if(currentTalkingElement.GetType() == typeof(Question)) {
-                        Question q = (Question)currentTalkingElement;
-                        AndroidStatus.happiness += q.correct_happiness_boost;
+
+                    TalkingElement nextElement = null;
+
+                    if(currentTalkingElement.correctlyAnswered)
+                    {
+                        if(currentTalkingElement.GetType() == typeof(Question)) {
+                            Question q = (Question)currentTalkingElement;
+                            AndroidStatus.happiness += q.correct_happiness_boost;
+                        }
+                        nextElement = currentTalkingElement.rightAnswerNode;
                     }
-                    nextElement = currentTalkingElement.rightAnswerNode;
-                }
-                else
-                {
-                    if(currentTalkingElement.GetType() == typeof(Question)) {
-                        Question q = (Question)currentTalkingElement;
-                        AndroidStatus.happiness += q.incorrect_happiness_loss;
+                    else
+                    {
+                        if(currentTalkingElement.GetType() == typeof(Question)) {
+                            Question q = (Question)currentTalkingElement;
+                            AndroidStatus.happiness += q.incorrect_happiness_loss;
+                        }
+                        nextElement = currentTalkingElement.wrongAnswerNode;
                     }
-                    nextElement = currentTalkingElement.wrongAnswerNode;
-                }
 
-                if(nextElement != null)
-                {
-                    SetTalkingElement(nextElement);
-                    Debug.Log("Not nUll");
+                    if(nextElement != null)
+                    {
+                        SetTalkingElement(nextElement);
+                        Debug.Log("Not nUll");
+                    }
+                    else
+                    {
+                        SetTalkingElement(AndroidStatus.GetTalkingElement());
+                        Debug.Log("Next Element");
+                    }
+
                 }
                 else
                 {
                     SetTalkingElement(AndroidStatus.GetTalkingElement());
-                    Debug.Log("Next Element");
                 }
-
-            }
-            else
-            {
-                SetTalkingElement(AndroidStatus.GetTalkingElement());
             }
         }
-        androidState.Update();
-        if (currentTalkingElement)
-        {
-            var next = currentTalkingElement.GetText();
-            if (next != null && next.breadText != fullLine)
-                SetDialogue(next);
 
+        androidState.Update();
+        if(game_mode == GameMode.Talking) {
+            if (currentTalkingElement)
+            {
+                var next = currentTalkingElement.GetText();
+                if (next != null && next.breadText != originalFullLine)
+                    SetDialogue(next);
+            }
         }
     }
    
@@ -180,13 +302,6 @@ public class Gameplay : MonoBehaviour
         } else {
             Debug.LogWarning("New talking element was null");
         }
-    }
-
-    public void ChangeState(AndroidState changeToState)
-    {
-        androidState.Exit();
-        androidState = changeToState;
-        androidState.Enter();
     }
 
     public string ReadCurrentDialogue()
@@ -206,9 +321,18 @@ public class Gameplay : MonoBehaviour
         return readLine;
     }
 
+    public string Filter(string v) {
+        if(v != null) {
+            return v.Replace("$name", myName);
+        } else {
+            return "";
+        }
+    }
+
     public void SetDialogue(Question.StringEmotion inDialogue)
     {
-        fullLine = inDialogue.breadText;
+        originalFullLine = inDialogue.breadText;
+        fullLine = Filter(originalFullLine);
         readLine = "";
         FaceSystem.INSTANCE.SetEmotion(inDialogue.emotionState);
         CommunicationsManager.INSTANCE.Say(fullLine);
@@ -280,6 +404,7 @@ public class AndroidUpset : AndroidState
     }
 
     private bool was_interjection = false;
+    private Question prev_question = null;
     public override void Update()
     {
         if (gameRef.currentTalkingElement == null)
@@ -303,12 +428,40 @@ public class AndroidUpset : AndroidState
                 AndroidStatus.AddTalkingElement(chosen);
                 was_interjection = true;
             } else {
-                AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
-                questionTraverser++;
+                Question[] source = gameRef.questions;
 
-                if (gameRef.questions.Length <= questionTraverser) {
-                    questionTraverser = 0;
+                if(gameRef.game_sequence == Gameplay.GameSequence.Livingroom) {
+                    if(gameRef.livingroom_questions.Length > 0) {
+                        source = gameRef.livingroom_questions;
+                    }
                 }
+                if(gameRef.game_sequence == Gameplay.GameSequence.Balcony) {
+                    if(gameRef.balcony_questions.Length > 0) {
+                        source = gameRef.balcony_questions;
+                    }
+                }
+                if(gameRef.game_sequence == Gameplay.GameSequence.Bedroom) {
+                    if(gameRef.bedroom_questions.Length > 0) {
+                        source = gameRef.bedroom_questions;
+                    }
+                }
+
+                List<Question> possibilities = new List<Question>();
+                foreach(Question q in source) {
+                    if(AndroidStatus.happiness >= q.happiness_min && AndroidStatus.happiness <= q.happiness_max) {
+                        if(q != prev_question) {
+                            possibilities.Add(q);
+                        }
+                    }
+                }
+
+                if(possibilities.Count == 0) {
+                    possibilities.AddRange(gameRef.questions);
+                }
+
+                Question chosen = possibilities[UnityEngine.Random.Range(0,possibilities.Count)];
+                AndroidStatus.AddTalkingElement(chosen);
+                prev_question = chosen;
                 was_interjection = false;
             }
         }
