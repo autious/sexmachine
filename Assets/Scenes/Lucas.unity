@@ -3494,11 +3494,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
-      propertyPath: livingroom_questions.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
-        type: 3}
       propertyPath: outputDia
       value: 
       objectReference: {fileID: 8957214479873404414}
@@ -3537,12 +3532,6 @@ PrefabInstance:
       propertyPath: button
       value: 
       objectReference: {fileID: 1421771427}
-    - target: {fileID: 6704839165430013597, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
-        type: 3}
-      propertyPath: livingroom_questions.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9cfb4c98e5c1dfb41997c25e449c642d,
-        type: 2}
     - target: {fileID: 6704839164332263404, guid: 97b513f3c5f4ba640a3d08f7ac8a0067,
         type: 3}
       propertyPath: audMusic
