@@ -1927,6 +1927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64538cc4985e9f646a2e352509e813db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game_mode: 0
+  game_sequence: 0
   outputDia: {fileID: 8957214479873404414}
   questions:
   - {fileID: 11400000, guid: 7734476af84a1ea47a3e751c304f8f10, type: 2}
@@ -1937,13 +1939,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 85a4ec878aa8e7a48bdaa68197651500, type: 2}
   - {fileID: 11400000, guid: 2d1a728cadc9a8c4eaeaf7d2ef3c112b, type: 2}
   - {fileID: 11400000, guid: 5602ac8ad9ae05f4ea14936eb3e02957, type: 2}
+  livingroom_questions: []
+  balcony_questions: []
+  bedroom_questions: []
   interjections:
   - {fileID: 11400000, guid: 19287d3336b5d9244ab0e68324d3f120, type: 2}
   - {fileID: 11400000, guid: 8cb3b827fd7b3cb40abf211acad23a87, type: 2}
   currentTalkingElement: {fileID: 0}
   dialogueTimeInterval: 0.03
+  change_scene: {fileID: 2046524110}
+  mood_debug: {fileID: 134109872}
   happiness_debug: {fileID: 1564751418}
   starting_element: {fileID: 11400000, guid: ba0eaef83bb403649bfc802a8ad3aac1, type: 2}
+  myName: 
+  cheers_game: {fileID: 258450064}
 --- !u!4 &734187892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7741514786665766466, guid: e1d10c44a582f9941a106060ec2db85c,
