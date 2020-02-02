@@ -20,6 +20,9 @@ public class TalkingElement : ScriptableObject
     {
         return false;
     }
+
+    public virtual void Reset() {
+    }
 }
 
 public class RegularTalkingPoint: TalkingElement
@@ -63,6 +66,10 @@ public static class AndroidStatus
         {
             returnelement = talkingPoints[0];
             talkingPoints.RemoveAt(0);
+        } 
+        else 
+        {
+            Debug.LogWarning("Ran out of talking points");
         }
         return returnelement;
     }
@@ -139,18 +146,20 @@ public class Gameplay : MonoBehaviour
 
                 if(nextElement != null)
                 {
-                    currentTalkingElement = nextElement;
+                    SetTalkingElement(nextElement);
                     Debug.Log("Not nUll");
                 }
                 else
                 {
-                    currentTalkingElement = AndroidStatus.GetTalkingElement();
+                    SetTalkingElement(AndroidStatus.GetTalkingElement());
                     Debug.Log("Next Element");
                 }
 
             }
             else
-                currentTalkingElement = AndroidStatus.GetTalkingElement();
+            {
+                SetTalkingElement(AndroidStatus.GetTalkingElement());
+            }
         }
         androidState.Update();
         if (currentTalkingElement)
@@ -162,6 +171,15 @@ public class Gameplay : MonoBehaviour
         }
 
 
+    }
+   
+    public void SetTalkingElement(TalkingElement te) {
+        currentTalkingElement = te;
+        if(te != null) {
+            currentTalkingElement.Reset();
+        } else {
+            Debug.LogWarning("New talking element was null");
+        }
     }
 
     public void ChangeState(AndroidState changeToState)
@@ -262,16 +280,13 @@ public class AndroidUpset : AndroidState
 
     public override void Update()
     {
-        if(AndroidStatus.happiness < 1.0f)
+        if (gameRef.currentTalkingElement == null)
         {
-            if (gameRef.currentTalkingElement == null)
-            {
-                AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
-                questionTraverser++;
+            AndroidStatus.AddTalkingElement(gameRef.questions[questionTraverser]);
+            questionTraverser++;
 
-                if (gameRef.questions.Length <= questionTraverser) {
-                    questionTraverser = 0;
-                }
+            if (gameRef.questions.Length <= questionTraverser) {
+                questionTraverser = 0;
             }
         }
     }
