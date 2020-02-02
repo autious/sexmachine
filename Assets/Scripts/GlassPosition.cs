@@ -14,6 +14,11 @@ public class GlassPosition : MonoBehaviour
     bool isWobbly = true;
 
     public bool succeded = false;
+    public int attempt_count = 0;
+
+    float input_attempt_timer = 0.0f;
+    Vector3 old_position;
+    Vector3 oldog;
 
     // Start is called before the first frame update
     void Start()
@@ -30,13 +35,30 @@ public class GlassPosition : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, ogPos, 8 * Time.deltaTime);
 
-        if(InputManager.PushToTalk()) {
-            isWobbly = false;
-            theyGlass.enabled = false;
-            ogPos = transform.position;
-            ogPos.z = 0;
+        if(Time.time > input_attempt_timer) {
+            if(isWobbly) {
+                if(InputManager.PushToTalk()) {
+                    isWobbly = false;
+                    theyGlass.enabled = false;
 
-            transform.position = ogPos;
+                    old_position = transform.position;
+                    oldog = ogPos;
+
+                    ogPos = transform.position;
+                    ogPos.z = 0;
+
+                    transform.position = ogPos;
+                    input_attempt_timer = Time.time + 1.0f;
+                }
+            } else {
+                isWobbly = true;
+                theyGlass.enabled = true;
+                ogPos = oldog;
+                transform.position = old_position;
+                if(succeded == false) {
+                    attempt_count++;
+                }
+            }
         }
     }
 
