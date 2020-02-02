@@ -219,6 +219,8 @@ public class Gameplay : MonoBehaviour
                     sex_game.SetActive(true);
                     game_mode = GameMode.Minigame;
                 }
+            } else if(AndroidStatus.happiness <= -1.0f) {
+                game_mode = GameMode.Failure;
             }
         }
 
