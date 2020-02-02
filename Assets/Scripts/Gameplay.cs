@@ -129,6 +129,14 @@ public class Gameplay : MonoBehaviour
 
     public GameObject joystick;
     public GameObject button;
+
+    public static Gameplay INSTANCE = null;
+
+    private void Awake()
+    {
+        INSTANCE = this;
+    }
+
     void Start()
     {
         fullLine = "";
@@ -542,7 +550,19 @@ public static class InputManager
 
     public static bool PushToTalk()
     {
-        return Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.Space);
+        bool ret_value = Input.GetKeyDown(KeyCode.Joystick2Button0) || Input.GetKeyDown(KeyCode.Space);
+        if(Gameplay.INSTANCE != null) {
+            if(ret_value) {
+                if(Gameplay.INSTANCE.button.activeSelf == true) {
+                    Gameplay.INSTANCE.button.SetActive(false);
+                }
+            } else {
+                if(Gameplay.INSTANCE.button.activeSelf == false) {
+                    Gameplay.INSTANCE.button.SetActive(true);
+                }
+            }
+        }
+        return ret_value;
     }
 }
 
@@ -562,64 +582,75 @@ public class YesAndNo
 
     public PlayerAnswer GetAnswer()
     {
+        PlayerAnswer ret_value = PlayerAnswer.Nothing;
         if (wait > 0)
         {
             wait -= Time.deltaTime;
             return PlayerAnswer.Nothing;
-        }
-
-        if (Math.Abs(InputManager.GetX()) <= 0.0f && Math.Abs(InputManager.GetY()) <= 0.0f )
-        {
-            stayStileTime += Time.deltaTime;
-            if (stayStileTime > 1)
+        } else {
+            if (Math.Abs(InputManager.GetX()) <= 0.0f && Math.Abs(InputManager.GetY()) <= 0.0f )
             {
-                shakeCount = 0;
-            }
-        }
-        else
-        {
-            stayStileTime = 0;
-            // Debug.Log("IN HERE");
-            //YES
-            if (Math.Abs(InputManager.GetX()) > Math.Abs(InputManager.GetY()))
-            {
-                if (!isHorizontal)
-                    shakeCount = 0;
-
-                isHorizontal = true;
-                direction = InputManager.GetX();
-
-                if (shakeCount >= 4)
+                stayStileTime += Time.deltaTime;
+                if (stayStileTime > 1)
                 {
                     shakeCount = 0;
-                    wait = 1;
-
-                    return PlayerAnswer.No;
                 }
             }
-            //NO
             else
             {
-                if (isHorizontal)
-                    shakeCount = 0;
-                isHorizontal = false;
-                direction = InputManager.GetY();
-
-                if (shakeCount >= 4)
+                stayStileTime = 0;
+                // Debug.Log("IN HERE");
+                //YES
+                if (Math.Abs(InputManager.GetX()) > Math.Abs(InputManager.GetY()))
                 {
-                    wait = 1;
-                    shakeCount = 0;
-                    return PlayerAnswer.Yes;
+                    if (!isHorizontal)
+                        shakeCount = 0;
+
+                    isHorizontal = true;
+                    direction = InputManager.GetX();
+
+                    if (shakeCount >= 4)
+                    {
+                        shakeCount = 0;
+                        wait = 1;
+
+                        ret_value = PlayerAnswer.No;
+                    }
+                }
+                //NO
+                else
+                {
+                    if (isHorizontal)
+                        shakeCount = 0;
+                    isHorizontal = false;
+                    direction = InputManager.GetY();
+
+                    if (shakeCount >= 4)
+                    {
+                        wait = 1;
+                        shakeCount = 0;
+                        ret_value = PlayerAnswer.Yes;
+                    }
+                }
+
+                if(ret_value == PlayerAnswer.Nothing) {
+                    if ((direction + lastDirection) == 0)
+                        shakeCount++;
+
+                    lastDirection = direction;
                 }
             }
-
-            if ((direction + lastDirection) == 0)
-                shakeCount++;
-
-            lastDirection = direction;
-
         }
 
-        return PlayerAnswer.Nothing;
+        if(ret_value == PlayerAnswer.Nothing) {
+            if(Gameplay.INSTANCE.joystick.activeSelf == false) {
+                Gameplay.INSTANCE.joystick.SetActive(true);
+            }
+        } else {
+            if(Gameplay.INSTANCE.joystick.activeSelf == true) {
+                Gameplay.INSTANCE.joystick.SetActive(false);
+            }
+        }
+        return ret_value;
     }
 }
