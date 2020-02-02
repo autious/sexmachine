@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class FaceSystem : MonoBehaviour {
 
     [SerializeField] AudioSource audMusic;
-    enum MusicState {normal, angry, sad, wobbly, happy }
+    enum MusicState {normal, angry, sad, wobbly, happy, serious }
     MusicState currentMusicState = MusicState.normal;
     float musicPitch = 1;
 
@@ -27,13 +27,15 @@ public class FaceSystem : MonoBehaviour {
     [SerializeField] GameObject[] tears;
     [SerializeField] GameObject mad;
 
-    public enum Emotion { idle, happy, angry, sad, blush }
+    public enum Emotion { idle, happy, angry, sad, blush, serious }
 
     [SerializeField] UnityEvent eventIdle;
     [SerializeField] UnityEvent eventHappy;
     [SerializeField] UnityEvent eventAngry;
     [SerializeField] UnityEvent eventSad;
     [SerializeField] UnityEvent eventBlush;
+    [SerializeField] UnityEvent eventSerious;
+
 
     [SerializeField] WobbleHandler faceFollow;
 
@@ -110,6 +112,20 @@ public class FaceSystem : MonoBehaviour {
 
 
             break;
+
+            case Emotion.serious:
+            SetBrow(0);
+            eventSerious.Invoke();
+            SetBlush(false);
+            SetTears(false);
+            SetMad(false);
+
+            faceFollow.posDistance = Vector3.one * 0.05f;
+            faceFollow.speed = 0.4f;
+            CameraHead.ScreenShake = 0;
+            SetMusicState(MusicState.serious);
+
+            break;
             default:
             break;
         }
@@ -138,6 +154,10 @@ public class FaceSystem : MonoBehaviour {
             musicPitch = 0.7f + (Mathf.Sin(Time.time * 30) * 0.3f);
 
             break;
+            case MusicState.serious:
+            musicPitch = 0;
+
+            break;
             default:
             break;
         }
@@ -149,6 +169,8 @@ public class FaceSystem : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Alpha3)) { SetEmotion(Emotion.angry); }
         if(Input.GetKeyDown(KeyCode.Alpha4)) { SetEmotion(Emotion.sad);    }
         if(Input.GetKeyDown(KeyCode.Alpha5)) { SetEmotion(Emotion.blush);   }
+        if(Input.GetKeyDown(KeyCode.Alpha5)) { SetEmotion(Emotion.serious); }
+
 
     }
 
